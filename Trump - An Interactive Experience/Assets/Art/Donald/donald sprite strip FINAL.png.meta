@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 677ddb070cf3095499265ab8922e8860
-timeCreated: 1477186999
+timeCreated: 1477260084
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -64,7 +64,7 @@ TextureImporter:
         x: 0
         y: 0
         width: 19
-        height: 28
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -77,7 +77,7 @@ TextureImporter:
         x: 19
         y: 0
         width: 19
-        height: 28
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -90,7 +90,7 @@ TextureImporter:
         x: 38
         y: 0
         width: 19
-        height: 28
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -103,20 +103,7 @@ TextureImporter:
         x: 57
         y: 0
         width: 19
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: donald sprite strip FINAL_4
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 0
-        width: 19
-        height: 28
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
