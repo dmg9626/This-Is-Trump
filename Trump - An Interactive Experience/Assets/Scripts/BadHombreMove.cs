@@ -10,6 +10,7 @@ public class BadHombreMove : MonoBehaviour
 	void Start () 
 	{
 		CanMove = true;
+		MoveSpeed = Random.Range (2, 4);
 	}
 	
 	// Update is called once per frame
