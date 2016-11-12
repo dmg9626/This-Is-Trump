@@ -1,12 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\BGScroll.cs">
     <Files>
       <File FileName="..\..\..\Cow Panic\Unity Project\Cow Panic\Assets\Scripts\Moove.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\BadHombreMove.cs" Line="1" Column="1" />
       <File FileName="..\..\..\Cow Panic\Unity Project\Cow Panic\Assets\Scripts\CowSpawn_v2.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Spawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BGScroll.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\BGScroll.cs" Line="6" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

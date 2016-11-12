@@ -47,6 +47,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\BGScroll.cs" />
      <Compile Include="Assets\Scripts\BadHombreMove.cs" />
+     <Compile Include="Assets\Scripts\Spawn.cs" />
+     <Compile Include="Assets\Scripts\TrumpController.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

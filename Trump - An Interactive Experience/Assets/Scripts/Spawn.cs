@@ -16,7 +16,7 @@ public class Spawn : MonoBehaviour
 	{
 		int x = Random.Range(0, 100); // random number from 0 to 100
 
-		if (x >= 0 && x <= 35) // 35% chance to spawn cow
+		if (x >= 0 && x <= 20) // 35% chance to spawn cow
 		{
 			GameObject clone;
 			//clone = Instantiate(Resources.Load("cow")) as GameObject;
