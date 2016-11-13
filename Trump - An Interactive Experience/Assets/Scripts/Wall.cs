@@ -17,6 +17,9 @@ public class Wall : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        WallTrump = gameObject;
+        Trump = GameObject.Find("Donald(Clone)");
+        isAnimating = true;
         BeginWall();
         AnimTimer();
 	}
@@ -30,18 +33,16 @@ public class Wall : MonoBehaviour
         }
         else
         {
-            Destroy(WallTrump);
             Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
+            Destroy(WallTrump);
         }
 	}
 
     void BeginWall()
     {
         time = 0F;
-        Trump = GameObject.Find("Donald(Clone)");
         TrumpPos = Trump.transform.position;
         Destroy(Trump);
-        WallTrump = Instantiate(Resources.Load("DonaldWall"), TrumpPos, Quaternion.identity) as GameObject;
     }
     
     void AnimTimer()
@@ -53,6 +54,14 @@ public class Wall : MonoBehaviour
         else
         {
             isAnimating = false;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.name == "BadHombre(Clone)")
+        {
+            GameObject.Destroy(GameObject.Find("BadHombre(Clone)")); 
         }
     }
 }
