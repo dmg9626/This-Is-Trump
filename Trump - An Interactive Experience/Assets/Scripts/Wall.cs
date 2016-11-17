@@ -17,7 +17,6 @@ public class Wall : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        WallTrump = gameObject;
         Trump = GameObject.Find("Donald(Clone)");
         isAnimating = true;
         BeginWall();
@@ -61,7 +60,7 @@ public class Wall : MonoBehaviour
     {
         if(col.gameObject.name == "BadHombre(Clone)")
         {
-            GameObject.Destroy(GameObject.Find("BadHombre(Clone)")); 
+            GameObject.Destroy(col.gameObject); 
         }
     }
 }
