@@ -32,9 +32,9 @@ public class TrumpController : MonoBehaviour
         {
             trump.transform.position = new Vector2(trump.transform.position.x + PlayerSpeed * Time.deltaTime, trump.transform.position.y);
         }
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            ScriptController.GetComponent<Wall>();
+			ScriptController.GetComponent<Wall> ().beginAnimating = true;
         }
     }
 
