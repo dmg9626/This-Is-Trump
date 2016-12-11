@@ -24,17 +24,21 @@ public class TrumpController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            trump.transform.position = new Vector2(trump.transform.position.x - PlayerSpeed * Time.deltaTime, trump.transform.position.y);
+            ScriptController.GetComponent<Wall>().beginAnimating = true;
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if(!ScriptController.GetComponent<Wall>().isAnimating)
         {
-            trump.transform.position = new Vector2(trump.transform.position.x + PlayerSpeed * Time.deltaTime, trump.transform.position.y);
-        }
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-			ScriptController.GetComponent<Wall> ().beginAnimating = true;
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                trump.transform.position = new Vector2(trump.transform.position.x - PlayerSpeed * Time.deltaTime, trump.transform.position.y);
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                trump.transform.position = new Vector2(trump.transform.position.x + PlayerSpeed * Time.deltaTime, trump.transform.position.y);
+            }
         }
     }
 

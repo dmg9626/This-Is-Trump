@@ -9,9 +9,9 @@ using System.Collections;
 
 public class Wall : MonoBehaviour
 {
-    float time;
+    float time; // iterates from each frame until the animtion is finished
 	public bool beginAnimating;
-    bool isAnimating;
+    public bool isAnimating;
 	bool finishedAnimating;
 
     public GameObject Trump;
@@ -22,6 +22,7 @@ public class Wall : MonoBehaviour
     {
 		isAnimating = false;
 		beginAnimating = false;
+        finishedAnimating = false;
 
         Trump = GameObject.Find("Donald(Clone)");
 	}
@@ -50,15 +51,18 @@ public class Wall : MonoBehaviour
         
 		if (finishedAnimating)
         {
-			Destroy(WallTrump);
+            finishedAnimating = false;
+            TrumpPos = WallTrump.transform.position;
+            Destroy(WallTrump);
             Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
-			finishedAnimating = false;
+            Debug.Log("ay ylmao");
+            GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = GameObject.Find("Donald(Clone)");
         }
 	}
     
     void RunAnimation()
     {
-        if (time < .8F)
+        if (time < .75F)
         {
             time += Time.deltaTime;
         }
