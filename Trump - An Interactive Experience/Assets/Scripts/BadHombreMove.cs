@@ -16,9 +16,6 @@ public class BadHombreMove : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (CanMove) 
-		{
-			transform.position = new Vector2(transform.position.x - MoveSpeed * Time.deltaTime, transform.position.y);
-		}
-	}
+        transform.position = new Vector2(transform.position.x - MoveSpeed * Time.deltaTime, transform.position.y);
+    }
 }

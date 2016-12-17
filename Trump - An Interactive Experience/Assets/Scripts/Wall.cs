@@ -35,7 +35,6 @@ public class Wall : MonoBehaviour
 		if (_beginAnimating) 
 		{
             _canBeginAnimating = false;
-            Debug.Log("beginAnimating = true");
 			if (!_isAnimating) 
 			{
 				time = 0F;
@@ -45,8 +44,6 @@ public class Wall : MonoBehaviour
 
 				_isAnimating = true;
 				_beginAnimating = false;
-                Debug.Log("beginAnimating = false");
-                Debug.Log("isAnimating = true");
 			}
 		}
 
@@ -56,7 +53,6 @@ public class Wall : MonoBehaviour
             if (_finishedAnimating)
             {
                 _isAnimating = false;
-                Debug.Log("finishAnimating = false");
                 TrumpPos = WallTrump.transform.position;
                 Destroy(WallTrump);
                 Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
@@ -75,18 +71,12 @@ public class Wall : MonoBehaviour
         {
             time += Time.deltaTime;
         }
-        else
-        {
-			_finishedAnimating = true;
-
-            Debug.Log("isAnimating = false");
-            Debug.Log("finishAnimating = true");
-        }
+        else _finishedAnimating = true;
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-		if (col.gameObject.name == "BadHombre(Clone)" || col.gameObject.name == "CameraMan(Clone)")
+		if (col.gameObject.tag == "Enemy")
         {
             GameObject.Destroy(col.gameObject); 
         }
