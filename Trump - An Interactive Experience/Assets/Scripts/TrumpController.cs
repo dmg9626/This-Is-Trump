@@ -26,9 +26,12 @@ public class TrumpController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            ScriptController.GetComponent<Wall>().beginAnimating = true;
+            if(ScriptController.GetComponent<Wall>()._canBeginAnimating == true)
+            {
+                ScriptController.GetComponent<Wall>()._beginAnimating = true;
+            }
         }
-        if(!ScriptController.GetComponent<Wall>().isAnimating)
+        if(!ScriptController.GetComponent<Wall>()._isAnimating)
         {
 
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))

@@ -3,16 +3,17 @@ using System.Collections;
 
 
 // this script needs to be attached to ScriptController
-// when player presses W, TrumpController sets 
+// when player presses W, TrumpController sets beginAnimating = true
 // deletes Donald and begins animating
-// after finished animating, spawns Donald in its place and destroys self
+// after finished animating, spawns new Donald in its place and destroys self
 
 public class Wall : MonoBehaviour
 {
     float time; // iterates from each frame until the animtion is finished
-	public bool beginAnimating;
-    public bool isAnimating;
-	bool finishedAnimating;
+	public bool _beginAnimating;
+    public bool _isAnimating;
+	bool _finishedAnimating;
+    public bool _canBeginAnimating; // set to true from TrumpController
 
     public GameObject Trump;
     public GameObject WallTrump;
@@ -20,9 +21,10 @@ public class Wall : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		isAnimating = false;
-		beginAnimating = false;
-        finishedAnimating = false;
+		_isAnimating = false;
+		_beginAnimating = false;
+        _canBeginAnimating = true;
+        _finishedAnimating = false;
 
         Trump = GameObject.Find("Donald(Clone)");
 	}
@@ -30,34 +32,41 @@ public class Wall : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		if (beginAnimating) 
+		if (_beginAnimating) 
 		{
-			if (!isAnimating) 
+            _canBeginAnimating = false;
+            Debug.Log("beginAnimating = true");
+			if (!_isAnimating) 
 			{
 				time = 0F;
 				TrumpPos = Trump.transform.position;
 				Destroy (Trump);
 				WallTrump = Instantiate (Resources.Load ("DonaldWall"), TrumpPos, Quaternion.identity) as GameObject;
 
-				isAnimating = true;
-				beginAnimating = false;
+				_isAnimating = true;
+				_beginAnimating = false;
+                Debug.Log("beginAnimating = false");
+                Debug.Log("isAnimating = true");
 			}
 		}
 
-        if (isAnimating)
+        if (_isAnimating)
         {
             RunAnimation();
+            if (_finishedAnimating)
+            {
+                _isAnimating = false;
+                Debug.Log("finishAnimating = false");
+                TrumpPos = WallTrump.transform.position;
+                Destroy(WallTrump);
+                Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
+                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = GameObject.Find("Donald(Clone)");
+                _finishedAnimating = false;
+                _canBeginAnimating = true;
+            }
         }
         
-		if (finishedAnimating)
-        {
-            finishedAnimating = false;
-            TrumpPos = WallTrump.transform.position;
-            Destroy(WallTrump);
-            Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
-            Debug.Log("ay ylmao");
-            GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = GameObject.Find("Donald(Clone)");
-        }
+		
 	}
     
     void RunAnimation()
@@ -68,8 +77,10 @@ public class Wall : MonoBehaviour
         }
         else
         {
-            isAnimating = false;
-			finishedAnimating = true;
+			_finishedAnimating = true;
+
+            Debug.Log("isAnimating = false");
+            Debug.Log("finishAnimating = true");
         }
     }
 
