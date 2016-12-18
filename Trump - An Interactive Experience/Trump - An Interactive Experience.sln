@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{DC53C1C3-8ED7-D3BF-85AD-CF56C334DD77}") = "Trump - An Interactive Experience", "Assembly-CSharp.csproj", "{CF402B24-5BDF-B62F-9B46-DF8D3B777DBF}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trump - An Interactive Experience", "Trump - An Interactive Experience.csproj", "{386D3026-1790-101D-4588-8EEF560D7001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CF402B24-5BDF-B62F-9B46-DF8D3B777DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF402B24-5BDF-B62F-9B46-DF8D3B777DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF402B24-5BDF-B62F-9B46-DF8D3B777DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF402B24-5BDF-B62F-9B46-DF8D3B777DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{386D3026-1790-101D-4588-8EEF560D7001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{386D3026-1790-101D-4588-8EEF560D7001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{386D3026-1790-101D-4588-8EEF560D7001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{386D3026-1790-101D-4588-8EEF560D7001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
