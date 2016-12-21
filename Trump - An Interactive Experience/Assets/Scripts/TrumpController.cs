@@ -8,6 +8,7 @@ public class TrumpController : MonoBehaviour
     public float playerSpeed;
     public GameObject trump;
     public GameObject ScriptController;
+    public GameObject SoundController;
 	// Use this for initialization
 	void Start ()
     {
@@ -16,8 +17,10 @@ public class TrumpController : MonoBehaviour
             float TrumpXPos_Temp = -0.8F;
             float TrumpYPos_Temp = 1.91F;
             trump = Instantiate(Resources.Load("Donald")) as GameObject;
+            trump.name = "Donald";
             trump.transform.position = new Vector2(TrumpXPos_Temp, TrumpYPos_Temp);
             ScriptController = GameObject.Find("ScriptController");
+            SoundController = GameObject.Find("SoundController");
         }
         playerSpeed = 5;
     }
@@ -30,6 +33,7 @@ public class TrumpController : MonoBehaviour
             if(ScriptController.GetComponent<Wall>()._canBeginAnimating)
             {
                 ScriptController.GetComponent<Wall>()._beginAnimating = true; // trigger animation
+                SoundController.GetComponent<SoundManager>().Wrong();
             }
         }
         if(!ScriptController.GetComponent<Wall>()._isAnimating)

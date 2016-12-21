@@ -9,15 +9,15 @@ using System.Collections;
 
 public class Wall : MonoBehaviour
 {
-    float time; // iterates from each frame until the animtion is finished
+    float _time; // iterates from each frame until the animtion is finished
 	public bool _beginAnimating;
     public bool _isAnimating;
 	bool _finishedAnimating;
     public bool _canBeginAnimating; // set to true from TrumpController
 
     public GameObject Trump;
-    public GameObject WallTrump;
-    Vector2 TrumpPos;
+    public GameObject DonaldWall;
+    Vector2 _trumpPos;
 	// Use this for initialization
 	void Start ()
     {
@@ -26,7 +26,7 @@ public class Wall : MonoBehaviour
         _canBeginAnimating = true;
         _finishedAnimating = false;
 
-        Trump = GameObject.Find("Donald(Clone)");
+        Trump = GameObject.Find("Donald");
 	}
 	
 	// Update is called once per frame
@@ -37,10 +37,11 @@ public class Wall : MonoBehaviour
             _canBeginAnimating = false;
 			if (!_isAnimating) 
 			{
-				time = 0F;
-				TrumpPos = Trump.transform.position;
+				_time = 0F;
+				_trumpPos = Trump.transform.position;
 				Destroy (Trump);
-				WallTrump = Instantiate (Resources.Load ("DonaldWall"), TrumpPos, Quaternion.identity) as GameObject;
+				DonaldWall = Instantiate (Resources.Load ("DonaldWall"), _trumpPos, Quaternion.identity) as GameObject;
+                DonaldWall.name = "DonaldWall";
 
 				_isAnimating = true;
 				_beginAnimating = false;
@@ -53,9 +54,9 @@ public class Wall : MonoBehaviour
             if (_finishedAnimating)
             {
                 _isAnimating = false;
-                TrumpPos = WallTrump.transform.position;
-                Destroy(WallTrump);
-                Trump = Instantiate(Resources.Load("Donald"), TrumpPos, Quaternion.identity) as GameObject;
+                _trumpPos = DonaldWall.transform.position;
+                Destroy(DonaldWall);
+                Trump = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
                 GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = GameObject.Find("Donald(Clone)");
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
@@ -67,9 +68,9 @@ public class Wall : MonoBehaviour
     
     void RunAnimation()
     {
-        if (time < .75F)
+        if (_time < .75F)
         {
-            time += Time.deltaTime;
+            _time += Time.deltaTime;
         }
         else _finishedAnimating = true;
     }

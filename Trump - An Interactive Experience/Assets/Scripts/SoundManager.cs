@@ -23,34 +23,47 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
-    GameObject GameMusic;
+    GameObject _gameMusic;
+    GameObject _gameOverMusic;
 
     // Use this for initialization
     void Start ()
     {
         // calls musicGame() script to play the game music if it isn't playing already
-        if (!GameObject.Find("Sound_GameMusic(Clone)"))
+        if (!GameObject.Find("GameMusic"))
         {
-            musicGame();
+            GameMusic();
         }
 	}
     
 
-    void musicGame()
+    public void GameMusic()
     {
         // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
-        GameMusic = Instantiate(Resources.Load("Sound_GameMusic")) as GameObject;
-
-        // don't destroy the GameMusic object when switching scenes
-        // this way the music keeps playing across scenes
-        DontDestroyOnLoad(GameMusic);
+        _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
+        _gameMusic.name = "GameMusic";
 
         // don't destory SoundObject when switching scenes
         // this way if we need sound effects to happen in another scene the SoundObject will be there with its functions that make those effects play
-        DontDestroyOnLoad(GameObject.Find("SoundObject"));
+        //DontDestroyOnLoad(GameObject.Find("SoundObject"));
     }
 
-    public void moo()
+    public void GameOverMusic()
+    {
+        _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
+        _gameMusic.name = "GameOverMusic";
+    }
+
+    public void Wrong()
+    {
+        int rand = Random.Range(0, 2) + 1;
+        GameObject wrong;
+        wrong = Instantiate(Resources.Load("Wrong_1")) as GameObject;
+        wrong.name = "SoundEffect_Wrong";
+        Destroy(wrong, 0.6F);
+    }
+
+    public void Moo()
     {
         int rand = Random.Range(0, 2) + 1;
         GameObject moo;
