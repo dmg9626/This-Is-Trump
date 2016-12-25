@@ -33,7 +33,7 @@ public class TrumpController : MonoBehaviour
             if(ScriptController.GetComponent<Wall>()._canBeginAnimating)
             {
                 ScriptController.GetComponent<Wall>()._beginAnimating = true; // trigger animation
-                SoundController.GetComponent<SoundManager>().Wrong();
+                SoundController.GetComponent<SoundManager>().WallRaise();
             }
         }
         if(!ScriptController.GetComponent<Wall>()._isAnimating)
@@ -46,6 +46,10 @@ public class TrumpController : MonoBehaviour
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 trump.transform.position = new Vector2(trump.transform.position.x + playerSpeed * Time.deltaTime, trump.transform.position.y);
+            }
+            if(Input.GetKey(KeyCode.Space))
+            {
+                trump.GetComponent<Rigidbody2D>().AddForce(new Vector2(5, 0));
             }
         }
     }

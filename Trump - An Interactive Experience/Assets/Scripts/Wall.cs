@@ -57,7 +57,8 @@ public class Wall : MonoBehaviour
                 _trumpPos = DonaldWall.transform.position;
                 Destroy(DonaldWall);
                 Trump = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
-                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = GameObject.Find("Donald(Clone)");
+                Trump.name = "Donald";
+                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = Trump;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }
@@ -79,7 +80,20 @@ public class Wall : MonoBehaviour
     {
 		if (col.gameObject.tag == "Enemy")
         {
-            GameObject.Destroy(col.gameObject); 
+            GameObject.Destroy(col.gameObject);
+
+            // causing NullReferenceException
+            //if (col.gameObject.name == "BadHombre")
+            //{
+            //    gameObject.GetComponent<Stats>().BadHombreKilled();
+            //    Debug.Log("BadHombre killed");
+            //}
+
+            //if (col.gameObject.name == "CameraMan")
+            //{
+            //    gameObject.GetComponent<Stats>().CameraManKilled();
+            //    Debug.Log("CameraMan killed");
+            //}
         }
     }
 }

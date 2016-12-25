@@ -9,6 +9,7 @@ public class CameraManMove : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        MoveSpeed = Random.Range(3, 7);
     }
 
     // Update is called once per frame

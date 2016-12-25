@@ -3,15 +3,13 @@ using System.Collections;
 
 public class BadHombreMove : MonoBehaviour 
 {
-	public bool CanMove;
-	public float MoveSpeed;
+    public float MoveSpeed;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
 	{
-		CanMove = true;
-		MoveSpeed = Random.Range (3, 7);
-	}
+        MoveSpeed = Random.Range(3, 7);
+    }
 	
 	// Update is called once per frame
 	void Update () 

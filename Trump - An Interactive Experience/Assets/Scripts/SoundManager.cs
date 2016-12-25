@@ -54,13 +54,27 @@ public class SoundManager : MonoBehaviour
         _gameMusic.name = "GameOverMusic";
     }
 
-    public void Wrong()
+    public void WallRaise()
     {
-        int rand = Random.Range(0, 2) + 1;
-        GameObject wrong;
-        wrong = Instantiate(Resources.Load("Wrong_1")) as GameObject;
-        wrong.name = "SoundEffect_Wrong";
-        Destroy(wrong, 0.6F);
+        int rand = Random.Range(0, 3) + 1;
+        GameObject sound = null;
+        switch(rand)
+        {
+            case 1:
+                sound = Instantiate(Resources.Load("Wrong_1")) as GameObject;
+                sound.name = "SoundEffect_Wrong";
+                break;
+            case 2:
+                sound = Instantiate(Resources.Load("BuildAWall")) as GameObject;
+                sound.name = "BuildAWall";
+                break;
+            case 3:
+                sound = Instantiate(Resources.Load("BadHombres")) as GameObject;
+                sound.name = "BadHombres";
+                break;
+
+        }
+        Destroy(sound, 1.25F);
     }
 
     public void Moo()
