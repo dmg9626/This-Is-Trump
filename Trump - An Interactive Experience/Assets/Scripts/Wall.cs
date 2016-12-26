@@ -15,7 +15,7 @@ public class Wall : MonoBehaviour
 	bool _finishedAnimating;
     public bool _canBeginAnimating; // set to true from TrumpController
 
-    public GameObject Trump;
+    public GameObject Donald;
     public GameObject DonaldWall;
     Vector2 _trumpPos;
 	// Use this for initialization
@@ -26,7 +26,7 @@ public class Wall : MonoBehaviour
         _canBeginAnimating = true;
         _finishedAnimating = false;
 
-        Trump = GameObject.Find("Donald");
+        Donald = GameObject.Find("Donald");
 	}
 	
 	// Update is called once per frame
@@ -38,8 +38,8 @@ public class Wall : MonoBehaviour
 			if (!_isAnimating) 
 			{
 				_time = 0F;
-				_trumpPos = Trump.transform.position;
-				Destroy (Trump);
+				_trumpPos = Donald.transform.position;
+				Destroy (Donald);
 				DonaldWall = Instantiate (Resources.Load ("DonaldWall"), _trumpPos, Quaternion.identity) as GameObject;
                 DonaldWall.name = "DonaldWall";
 
@@ -56,9 +56,9 @@ public class Wall : MonoBehaviour
                 _isAnimating = false;
                 _trumpPos = DonaldWall.transform.position;
                 Destroy(DonaldWall);
-                Trump = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
-                Trump.name = "Donald";
-                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = Trump;
+                Donald = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
+                Donald.name = "Donald";
+                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = Donald;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }

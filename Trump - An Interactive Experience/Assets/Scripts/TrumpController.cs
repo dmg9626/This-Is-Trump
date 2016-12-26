@@ -49,7 +49,7 @@ public class TrumpController : MonoBehaviour
             }
             if(Input.GetKey(KeyCode.Space))
             {
-                trump.GetComponent<Rigidbody2D>().AddForce(new Vector2(5, 0));
+                trump.GetComponent<Jump>().BeginJump();
             }
         }
     }
