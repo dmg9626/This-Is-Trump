@@ -7,7 +7,7 @@ using System.Collections;
 // deletes Donald and begins animating
 // after finished animating, spawns new Donald in its place and destroys self
 
-public class Wall : MonoBehaviour
+public class WallRaise : MonoBehaviour
 {
     float _time; // iterates from each frame until the animtion is finished
 	public bool _beginAnimating;
@@ -25,15 +25,14 @@ public class Wall : MonoBehaviour
 		_beginAnimating = false;
         _canBeginAnimating = true;
         _finishedAnimating = false;
-
-        Donald = GameObject.Find("Donald");
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
 		if (_beginAnimating) 
-		{
+        {
+            Donald = GameObject.Find("Donald");
             _canBeginAnimating = false;
 			if (!_isAnimating) 
 			{
@@ -76,24 +75,5 @@ public class Wall : MonoBehaviour
         else _finishedAnimating = true;
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-		if (col.gameObject.tag == "Enemy")
-        {
-            GameObject.Destroy(col.gameObject);
 
-            // causing NullReferenceException
-            //if (col.gameObject.name == "BadHombre")
-            //{
-            //    gameObject.GetComponent<Stats>().BadHombreKilled();
-            //    Debug.Log("BadHombre killed");
-            //}
-
-            //if (col.gameObject.name == "CameraMan")
-            //{
-            //    gameObject.GetComponent<Stats>().CameraManKilled();
-            //    Debug.Log("CameraMan killed");
-            //}
-        }
-    }
 }

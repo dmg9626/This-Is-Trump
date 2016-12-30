@@ -30,13 +30,13 @@ public class TrumpController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            if(ScriptController.GetComponent<Wall>()._canBeginAnimating)
+            if(ScriptController.GetComponent<WallRaise>()._canBeginAnimating)
             {
-                ScriptController.GetComponent<Wall>()._beginAnimating = true; // trigger animation
+                ScriptController.GetComponent<WallRaise>()._beginAnimating = true; // trigger animation
                 SoundController.GetComponent<SoundManager>().WallRaise();
             }
         }
-        if(!ScriptController.GetComponent<Wall>()._isAnimating)
+        if(!ScriptController.GetComponent<WallRaise>()._isAnimating)
         {
             //move left/right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))

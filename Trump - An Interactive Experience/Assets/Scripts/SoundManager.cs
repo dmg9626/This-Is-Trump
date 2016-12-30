@@ -65,13 +65,13 @@ public class SoundManager : MonoBehaviour
                 sound.name = "SoundEffect_Wrong";
                 break;
             case 2:
-                sound = Instantiate(Resources.Load("BuildAWall")) as GameObject;
-                sound.name = "BuildAWall";
+                sound = Instantiate(Resources.Load("BadHombres")) as GameObject;
+                sound.name = "BadHombres";
                 break;
             //case 3:
-            //    sound = Instantiate(Resources.Load("BadHombres")) as GameObject;
-            //    sound.name = "BadHombres";
-            //    break;
+                //    sound = Instantiate(Resources.Load("BuildAWall")) as GameObject;
+                //    sound.name = "BuildAWall";
+                //    break;
 
         }
         Destroy(sound, 1.25F);

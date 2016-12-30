@@ -29,15 +29,15 @@ public class EnemySpawn : MonoBehaviour
             {
                 clone = Instantiate(Resources.Load("BadHombre")) as GameObject;
                 clone.name = "BadHombre";
-                //ScriptController.GetComponent<Stats>().BadHombreSpawned(); // causing a Null Reference exception
-                //Debug.Log(ScriptController.GetComponent<Stats>().BadHombreSpawnCount + " bad hombres");
+                ScriptController.GetComponent<Stats>().BadHombreSpawned(); // causing a Null Reference exception
+                Debug.Log(ScriptController.GetComponent<Stats>().BadHombreSpawnCount + " bad hombres");
             }
             if (y < 50)
             {
                 clone = Instantiate(Resources.Load("CameraMan")) as GameObject;
                 clone.name = "CameraMan";
-                //ScriptController.GetComponent<Stats>().CameraManSpawned(); // causing a Null Reference exception
-                //Debug.Log(ScriptController.GetComponent<Stats>().CameraManSpawnCount + " bad hombres");
+                ScriptController.GetComponent<Stats>().CameraManSpawned(); // causing a Null Reference exception
+                Debug.Log(ScriptController.GetComponent<Stats>().CameraManSpawnCount + " bad hombres");
             }
 
             // spawns a prefab to the left of the screen
