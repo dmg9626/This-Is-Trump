@@ -50,6 +50,20 @@ public class EnemySpawn : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+        int totalSpawns = ScriptController.GetComponent<Stats>().BadHombreSpawnCount + ScriptController.GetComponent<Stats>().CameraManSpawnCount;
+      //if (totalSpawns % 20 == 0 )
+      //{
+      //    if (levelIndex > 1)
+      //    {
+      //        CancelInvoke();
+      //    }
+      //    Debug.Log("level " + levelIndex);
+      //    _frequency *= .8F;
+      //    levelIndex++;
+      //
+      //    InvokeRepeating("Spawn", 1, _frequency);
+      //}
+
         if(_time % 5 == 0)
         {
             if (levelIndex > 1)
@@ -59,8 +73,8 @@ public class EnemySpawn : MonoBehaviour
             Debug.Log("level " + levelIndex);
             _frequency *= .8F;
             levelIndex++;
-
-            InvokeRepeating("Spawn", 1, _frequency);
+        
+            InvokeRepeating("Spawn", 2, _frequency);
         }
 
         _time+= Time.deltaTime;

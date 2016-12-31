@@ -17,7 +17,9 @@ public class TrumpController : MonoBehaviour
             float TrumpXPos_Temp = -0.8F;
             float TrumpYPos_Temp = 1.91F;
             trump = Instantiate(Resources.Load("Donald")) as GameObject;
+
             trump.name = "Donald";
+            trump.GetComponent<Damage>().Lives = 5;
             trump.transform.position = new Vector2(TrumpXPos_Temp, TrumpYPos_Temp);
             ScriptController = GameObject.Find("ScriptController");
             SoundController = GameObject.Find("SoundController");
