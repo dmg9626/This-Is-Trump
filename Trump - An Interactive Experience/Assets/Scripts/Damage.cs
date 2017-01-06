@@ -19,10 +19,30 @@ public class Damage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (Lives > 0)
         {
-            gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
-            Lives--;
+
+            if (col.gameObject.tag == "Enemy")
+            {
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
+                Lives--;
+                RemoveHeart();
+                Debug.Log("Lives: " + Lives);
+            }
+        }
+        else
+        {
+            
+        }
+    }
+
+    void RemoveHeart()
+    {
+        switch (Lives)
+        {
+            
+            default:
+                break;
         }
     }
 }

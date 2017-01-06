@@ -6,7 +6,7 @@ public class TrumpController : MonoBehaviour
 {
     public bool canMove = true;
     public float playerSpeed;
-    public GameObject trump;
+    public GameObject Donald;
     public GameObject ScriptController;
     public GameObject SoundController;
 	// Use this for initialization
@@ -14,13 +14,10 @@ public class TrumpController : MonoBehaviour
     {
         if(!GameObject.Find("Donald"))
         {
-            float TrumpXPos_Temp = -0.8F;
-            float TrumpYPos_Temp = 1.91F;
-            trump = Instantiate(Resources.Load("Donald")) as GameObject;
+            Donald = Instantiate(Resources.Load("Donald")) as GameObject;
+            Donald.name = "Donald";
+            Donald.GetComponent<Damage>().Lives = 5;
 
-            trump.name = "Donald";
-            trump.GetComponent<Damage>().Lives = 5;
-            trump.transform.position = new Vector2(TrumpXPos_Temp, TrumpYPos_Temp);
             ScriptController = GameObject.Find("ScriptController");
             SoundController = GameObject.Find("SoundController");
         }
@@ -40,18 +37,17 @@ public class TrumpController : MonoBehaviour
         }
         if(!ScriptController.GetComponent<WallRaise>()._isAnimating)
         {
-            //move left/right
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                trump.transform.position = new Vector2(trump.transform.position.x - playerSpeed * Time.deltaTime, trump.transform.position.y);
+                Donald.transform.position = new Vector2(Donald.transform.position.x - playerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                trump.transform.position = new Vector2(trump.transform.position.x + playerSpeed * Time.deltaTime, trump.transform.position.y);
+                Donald.transform.position = new Vector2(Donald.transform.position.x + playerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
-            if(Input.GetKey(KeyCode.Space))
+            if(Input.GetKey(KeyCode.Space) && Donald.GetComponent<Jump>()._isJumping == false)
             {
-                trump.GetComponent<Jump>().BeginJump();
+                ScriptController.GetComponent<Jump>().BeginJump();
             }
         }
     }

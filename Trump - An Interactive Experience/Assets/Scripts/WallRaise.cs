@@ -57,7 +57,7 @@ public class WallRaise : MonoBehaviour
                 Destroy(DonaldWall);
                 Donald = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
                 Donald.name = "Donald";
-                GameObject.Find("ScriptController").GetComponent<TrumpController>().trump = Donald;
+                GameObject.Find("ScriptController").GetComponent<TrumpController>().Donald = Donald;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }
