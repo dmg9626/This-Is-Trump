@@ -5,10 +5,11 @@ using UnityEngine;
 public class Damage : MonoBehaviour 
 {
     public int Lives;
+    GameObject ScriptController;
 	// Use this for initialization
 	void Start () 
     {
-		
+        ScriptController = GameObject.Find("ScriptController");
 	}
 	
 	// Update is called once per frame
@@ -26,23 +27,14 @@ public class Damage : MonoBehaviour
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
                 Lives--;
-                RemoveHeart();
-                Debug.Log("Lives: " + Lives);
+                ScriptController.GetComponent<Stats>().RemoveHeart(Lives);
             }
         }
         else
         {
-            
+            Application.LoadLevel("GameOver");
         }
     }
 
-    void RemoveHeart()
-    {
-        switch (Lives)
-        {
-            
-            default:
-                break;
-        }
-    }
+
 }

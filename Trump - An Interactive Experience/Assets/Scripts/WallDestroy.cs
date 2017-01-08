@@ -26,22 +26,12 @@ public class WallDestroy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy" && col.gameObject.name == "BadHombre")
         {
-            // causing NullReferenceException
-            if (col.gameObject.name == "BadHombre")
-            {
-                ScriptController.GetComponent<Stats>().BadHombreKilled();
-                Debug.Log("BadHombres killed: " + ScriptController.GetComponent<Stats>().BadHombreKillCount);
-            }
-
-            if (col.gameObject.name == "CameraMan")
-            {
-                ScriptController.GetComponent<Stats>().CameraManKilled();
-                Debug.Log("CameraMans killed: " +  + ScriptController.GetComponent<Stats>().CameraManKillCount);
-            }
-
             GameObject.Destroy(col.gameObject);
+
+            ScriptController.GetComponent<Stats>().BadHombreKilled();
+            Debug.Log("BadHombres killed: " + ScriptController.GetComponent<Stats>().BadHombreKillCount);
         }
     }
 }

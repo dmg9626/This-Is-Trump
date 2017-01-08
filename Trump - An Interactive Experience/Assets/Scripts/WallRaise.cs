@@ -38,7 +38,7 @@ public class WallRaise : MonoBehaviour
 			{
 				_time = 0F;
 				_trumpPos = Donald.transform.position;
-				Destroy (Donald);
+                Donald.SetActive(false);
 				DonaldWall = Instantiate (Resources.Load ("DonaldWall"), _trumpPos, Quaternion.identity) as GameObject;
                 DonaldWall.name = "DonaldWall";
 
@@ -55,15 +55,12 @@ public class WallRaise : MonoBehaviour
                 _isAnimating = false;
                 _trumpPos = DonaldWall.transform.position;
                 Destroy(DonaldWall);
-                Donald = Instantiate(Resources.Load("Donald"), _trumpPos, Quaternion.identity) as GameObject;
-                Donald.name = "Donald";
+                Donald.SetActive(true);
                 GameObject.Find("ScriptController").GetComponent<TrumpController>().Donald = Donald;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }
         }
-        
-		
 	}
     
     void RunAnimation()

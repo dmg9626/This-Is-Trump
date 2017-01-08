@@ -12,13 +12,14 @@ public class Stats : MonoBehaviour
     private int _badHombreKillCount;
     private int _cameraManKillCount;
 
-    GameObject[] Hearts = new GameObject[5];
+    public IList<GameObject> Hearts;
 
     void Start ()
     {
+        Hearts = new GameObject[5];
+
         _badHombreSpawnCount = 0;
         _cameraManSpawnCount = 0;
-
         _badHombreKillCount = 0;
         _cameraManKillCount = 0;
 
@@ -30,6 +31,16 @@ public class Stats : MonoBehaviour
             Hearts[i].transform.position = heartPosition;
             heartPosition.x += 1.5F;
         }
+    }
+
+    public void RemoveHeart(int Lives)
+    {
+        GameObject heart = Hearts[Lives - 1];
+        Vector2 heartPosition = new Vector2(heart.transform.position.x, heart.transform.position.y);
+
+        GameObject.Destroy(heart);
+        heart = GameObject.Instantiate(Resources.Load("EmptyHeart")) as GameObject;
+        heart.name = "EmptyHeart" + Lives;
 
     }
 
