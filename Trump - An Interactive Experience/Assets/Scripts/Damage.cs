@@ -20,7 +20,7 @@ public class Damage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (Lives > 0)
+        if (Lives > 1)
         {
 
             if (col.gameObject.tag == "Enemy")

@@ -26,12 +26,19 @@ public class WallDestroy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Enemy" && col.gameObject.name == "BadHombre")
+        if (col.gameObject.tag == "Enemy")
         {
-            GameObject.Destroy(col.gameObject);
+            if (col.gameObject.name == "BadHombre")
+            {
+                GameObject.Destroy(col.gameObject);
 
-            ScriptController.GetComponent<Stats>().BadHombreKilled();
-            Debug.Log("BadHombres killed: " + ScriptController.GetComponent<Stats>().BadHombreKillCount);
+                ScriptController.GetComponent<Stats>().BadHombreKilled();
+                Debug.Log("BadHombres killed: " + ScriptController.GetComponent<Stats>().BadHombreKillCount);
+            }
+            else
+            {
+                ScriptController.GetComponent<WallAnim>()._finishedAnimating = true;
+            }
         }
     }
 }

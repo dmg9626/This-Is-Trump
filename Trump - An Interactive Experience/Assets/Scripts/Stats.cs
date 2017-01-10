@@ -35,13 +35,13 @@ public class Stats : MonoBehaviour
 
     public void RemoveHeart(int Lives)
     {
-        GameObject heart = Hearts[Lives - 1];
+        GameObject heart = Hearts[Lives];
         Vector2 heartPosition = new Vector2(heart.transform.position.x, heart.transform.position.y);
 
         GameObject.Destroy(heart);
         heart = GameObject.Instantiate(Resources.Load("EmptyHeart")) as GameObject;
         heart.name = "EmptyHeart" + Lives;
-
+        heart.transform.position = heartPosition;
     }
 
     public void BadHombreKilled()
