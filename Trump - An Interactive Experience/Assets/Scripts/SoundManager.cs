@@ -19,6 +19,7 @@
 */
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SoundManager : MonoBehaviour
@@ -29,19 +30,32 @@ public class SoundManager : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        // calls musicGame() script to play the game music if it isn't playing already
-        if (!GameObject.Find("GameMusic"))
+        switch (SceneManager.GetActiveScene().name)
         {
-            GameMusic();
+            case "Game":
+                {
+                    // calls musicGame() script to play the game music if it isn't playing already
+                    GameMusic();
+                    break;
+                }
+            case "GameOver":
+                {
+                    GameOverMusic();
+                    break;
+                }
         }
+
 	}
     
 
     public void GameMusic()
     {
-        // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
-        _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
-        _gameMusic.name = "GameMusic";
+        if (!GameObject.Find("GameMusic"))
+        {
+            // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
+            _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
+            _gameMusic.name = "GameMusic";
+        }
 
         // don't destory SoundObject when switching scenes
         // this way if we need sound effects to happen in another scene the SoundObject will be there with its functions that make those effects play
@@ -50,8 +64,11 @@ public class SoundManager : MonoBehaviour
 
     public void GameOverMusic()
     {
-        _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
-        _gameMusic.name = "GameOverMusic";
+        if (!GameObject.Find("GameOverMusic"))
+        {
+            _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
+            _gameMusic.name = "GameOverMusic";
+        }
     }
 
     public void WallRaise()
@@ -74,7 +91,7 @@ public class SoundManager : MonoBehaviour
                 //    break;
 
         }
-        Destroy(sound, 1.25F);
+        Destroy(sound, sound.GetComponent<AudioSource>().clip.length);
     }
 
     public void Moo()

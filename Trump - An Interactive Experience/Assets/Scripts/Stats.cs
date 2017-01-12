@@ -13,6 +13,8 @@ public class Stats : MonoBehaviour
     private int _cameraManKillCount;
 
     public IList<GameObject> Hearts;
+    public GameObject ScriptController;
+    public float time;
 
     void Start ()
     {
@@ -23,14 +25,25 @@ public class Stats : MonoBehaviour
         _badHombreKillCount = 0;
         _cameraManKillCount = 0;
 
+        time = 0;
+        ScriptController = GameObject.Find("ScriptController");
+
         Vector2 heartPosition = new Vector2(-6, 8);
         for (int i = 0; i < 5; i++)
         {
             Hearts[i] = Instantiate(Resources.Load("FullHeart")) as GameObject;
-            Hearts[i].name = "FullHeart" + (i - 1);
+            Hearts[i].name = "FullHeart" + (i + 1);
             Hearts[i].transform.position = heartPosition;
             heartPosition.x += 1.5F;
         }
+
+
+    }
+
+    void Update()
+    {
+        time += Time.deltaTime;
+        Debug.Log(time + " time");
     }
 
     public void RemoveHeart(int Lives)
@@ -47,6 +60,7 @@ public class Stats : MonoBehaviour
     public void BadHombreKilled()
     {
         _badHombreKillCount++;
+        ScriptController.GetComponent<ScoreController>().UpdateScore(500);
     }
     public void BadHombreSpawned()
     {
@@ -55,6 +69,8 @@ public class Stats : MonoBehaviour
     public void CameraManKilled()
     {
         _cameraManKillCount++;
+        ScriptController.GetComponent<ScoreController>().UpdateScore(300);
+
     }
     public void CameraManSpawned()
     {

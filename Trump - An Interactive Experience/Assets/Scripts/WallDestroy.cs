@@ -33,7 +33,6 @@ public class WallDestroy : MonoBehaviour
                 GameObject.Destroy(col.gameObject);
 
                 ScriptController.GetComponent<Stats>().BadHombreKilled();
-                Debug.Log("BadHombres killed: " + ScriptController.GetComponent<Stats>().BadHombreKillCount);
             }
             else
             {

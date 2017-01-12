@@ -32,6 +32,7 @@ public class Damage : MonoBehaviour
         }
         else
         {
+            // game over condition
             Application.LoadLevel("GameOver");
         }
     }

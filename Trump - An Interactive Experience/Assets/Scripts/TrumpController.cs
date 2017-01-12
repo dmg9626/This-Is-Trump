@@ -27,7 +27,7 @@ public class TrumpController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if(!ScriptController.GetComponent<WallAnim>()._isAnimating)
+        if(!ScriptController.GetComponent<WallAnim>()._isAnimating && !ScriptController.GetComponent<TweetAnim>()._isAnimating)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
@@ -44,15 +44,14 @@ public class TrumpController : MonoBehaviour
                     GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
                     tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
                     tweet.name = "Tweet";
+                    ScriptController.GetComponent<TweetAnim>()._beginAnimating = true;
                 }
             }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
-                if(ScriptController.GetComponent<WallAnim>()._canBeginAnimating)
-                {
-                    ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
-                    SoundController.GetComponent<SoundManager>().WallRaise();
-                }
+                ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
+                SoundController.GetComponent<SoundManager>().WallRaise();
+
             }
         }
     }

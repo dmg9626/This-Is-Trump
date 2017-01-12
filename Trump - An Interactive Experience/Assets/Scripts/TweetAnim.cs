@@ -60,7 +60,7 @@ public class TweetAnim : MonoBehaviour {
 
     void RunAnimation()
     {
-        if (_time < .75F)
+        if (_time < .5F)
         {
             _time += Time.deltaTime;
         }
