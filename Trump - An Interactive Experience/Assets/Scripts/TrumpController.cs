@@ -50,7 +50,7 @@ public class TrumpController : MonoBehaviour
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
-                SoundController.GetComponent<SoundManager>().WallRaise();
+                SoundController.GetComponent<SoundManager>().DonaldSoundEffect();
 
             }
         }

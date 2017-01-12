@@ -71,9 +71,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    public void WallRaise()
+    public void DonaldSoundEffect()
     {
-        int rand = Random.Range(0, 2) + 1;
+        int rand = Random.Range(0, 3) + 1;
         GameObject sound = null;
         switch(rand)
         {
@@ -85,10 +85,10 @@ public class SoundManager : MonoBehaviour
                 sound = Instantiate(Resources.Load("SoundEffect_BadHombres")) as GameObject;
                 sound.name = "SoundEffect_BadHombres";
                 break;
-            //case 3:
-                //    sound = Instantiate(Resources.Load("BuildAWall")) as GameObject;
-                //    sound.name = "BuildAWall";
-                //    break;
+            case 3:
+                    sound = Instantiate(Resources.Load("China")) as GameObject;
+                    sound.name = "SoundEffect_China";
+                    break;
 
         }
         Destroy(sound, sound.GetComponent<AudioSource>().clip.length);
