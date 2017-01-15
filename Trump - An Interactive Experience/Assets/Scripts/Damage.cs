@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Damage : MonoBehaviour 
@@ -33,7 +34,14 @@ public class Damage : MonoBehaviour
         else
         {
             // game over condition
-            Application.LoadLevel("GameOver");
+            ScriptController.GetComponent<Stats>().SetUpNewScene("GameOver");
+            MonoBehaviour[] scriptComponents = ScriptController.GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour script in scriptComponents)
+            {
+                Debug.Log("Found script " + script.GetType().Name);
+            }
+            GameObject.Destroy(ScriptController);
+            SceneManager.LoadScene("GameOver");
         }
     }
 

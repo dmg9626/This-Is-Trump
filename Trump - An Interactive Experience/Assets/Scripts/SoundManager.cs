@@ -86,9 +86,9 @@ public class SoundManager : MonoBehaviour
                 sound.name = "SoundEffect_BadHombres";
                 break;
             case 3:
-                    sound = Instantiate(Resources.Load("China")) as GameObject;
-                    sound.name = "SoundEffect_China";
-                    break;
+                sound = Instantiate(Resources.Load("SoundEffect_China")) as GameObject;
+                sound.name = "SoundEffect_China";
+                break;
 
         }
         Destroy(sound, sound.GetComponent<AudioSource>().clip.length);

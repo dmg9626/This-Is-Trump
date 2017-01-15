@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,19 +15,42 @@ public class Stats : MonoBehaviour
 
     public IList<GameObject> Hearts;
     public GameObject ScriptController;
+    public GameObject ScoreController;
     public float time;
 
     void Start ()
     {
-        Hearts = new GameObject[5];
+        SetUpNewScene("Game");
+    }
 
-        _badHombreSpawnCount = 0;
-        _cameraManSpawnCount = 0;
-        _badHombreKillCount = 0;
-        _cameraManKillCount = 0;
+    public void SetUpNewScene(string sceneName)
+    {
+        switch (sceneName)
+        {
+            case "Game":
+                {
+                    SetUpGame();
+                    break;
+                }
+            case "GameOver":
+                {
+                    ScoreController.GetComponent<ScoreController>().GameOverStats(_badHombreKillCount, _cameraManKillCount, time);
+                    //GameObject.Destroy(ScriptController);
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+    private void SetUpGame()
+    {
+        Hearts = new GameObject[5];
 
         time = 0;
         ScriptController = GameObject.Find("ScriptController");
+        ScoreController = GameObject.Find("ScoreController");
+        DontDestroyOnLoad(ScoreController);
 
         Vector2 heartPosition = new Vector2(-6, 8);
         for (int i = 0; i < 5; i++)
@@ -36,14 +60,12 @@ public class Stats : MonoBehaviour
             Hearts[i].transform.position = heartPosition;
             heartPosition.x += 1.5F;
         }
-
-
     }
+
 
     void Update()
     {
         time += Time.deltaTime;
-        Debug.Log(time + " time");
     }
 
     public void RemoveHeart(int Lives)
@@ -60,7 +82,7 @@ public class Stats : MonoBehaviour
     public void BadHombreKilled()
     {
         _badHombreKillCount++;
-        ScriptController.GetComponent<ScoreController>().UpdateScore(500);
+        ScoreController.GetComponent<ScoreController>().UpdateScore(500);
     }
     public void BadHombreSpawned()
     {
@@ -69,8 +91,7 @@ public class Stats : MonoBehaviour
     public void CameraManKilled()
     {
         _cameraManKillCount++;
-        ScriptController.GetComponent<ScoreController>().UpdateScore(300);
-
+        ScoreController.GetComponent<ScoreController>().UpdateScore(350);
     }
     public void CameraManSpawned()
     {

@@ -9,6 +9,10 @@ public class TrumpController : MonoBehaviour
     public GameObject Donald;
     public GameObject ScriptController;
     public GameObject SoundController;
+
+    private int _badHombreKills;
+    private int _cameraManKills;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -22,10 +26,16 @@ public class TrumpController : MonoBehaviour
             SoundController = GameObject.Find("SoundController");
         }
         playerSpeed = 5;
+        DontDestroyOnLoad(gameObject);
     }
 	
 	// Update is called once per frame
 	void Update ()
+    {
+        InputHandler();
+    }
+
+    void InputHandler()
     {
         if(!ScriptController.GetComponent<WallAnim>()._isAnimating && !ScriptController.GetComponent<TweetAnim>()._isAnimating)
         {
@@ -55,6 +65,7 @@ public class TrumpController : MonoBehaviour
             }
         }
     }
+
 
     
 }
