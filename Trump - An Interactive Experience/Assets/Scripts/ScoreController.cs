@@ -10,7 +10,6 @@ public class ScoreController : MonoBehaviour
 
     private int _badHombreKills;
     private int _cameraManKills;
-    private int _score;
     private int _time;
     private string _enemyName;
 
@@ -31,7 +30,7 @@ public class ScoreController : MonoBehaviour
     public void UpdateScore(int scoreIncrease)
     {
         Score += scoreIncrease;
-        ScoreText.GetComponent<Text>().text = "Score: \n " + Score;
+        ScoreText.GetComponent<Text>().text = "Score: \n" + Score;
     }
 
     public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, float time)
@@ -55,5 +54,11 @@ public class ScoreController : MonoBehaviour
                 break;
         }
         gameOverMessage.GetComponent<TextMesh>().text += _enemyName + "!";
+
+        GameObject gameOverStats = GameObject.Find("GameOverStats");
+        gameOverStats.GetComponent<Text>().text = "Score: " + Score + "\n";
+        gameOverStats.GetComponent<Text>().text += "You kicked out " + _badHombreKills + " Bad Hombres\n";
+        gameOverStats.GetComponent<Text>().text += "You shut down " + _cameraManKills + " Biased Liberal Medias\n";
+        gameOverStats.GetComponent<Text>().text += "You were president for " + _time + " seconds\n";
     }
 }
