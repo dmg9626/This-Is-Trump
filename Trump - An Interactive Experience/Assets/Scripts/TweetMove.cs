@@ -27,7 +27,7 @@ public class TweetMove : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            if (col.gameObject.name == "CameraMan")
+            if (col.gameObject.name == "Camera Man")
             {
                 GameObject.Destroy(col.gameObject);
                 GameObject.Destroy(gameObject);

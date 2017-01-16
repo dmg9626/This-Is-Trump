@@ -3,22 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOverController : MonoBehaviour 
+public class GameOverController : MonoBehaviour
 {
     GameObject ScoreController;
-	// Use this for initialization
-	void Start () 
+    GameObject ScriptController;
+    private bool _hasLoaded;
+    // Use this for initialization
+    void Start () 
     {
         ScoreController = GameObject.Find("ScoreController");
+        ScriptController = GameObject.Find("ScriptController");
+        _hasLoaded = false;
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
-        if (SceneManager.GetActiveScene().name == "GameOver")
+        if (_hasLoaded == false && SceneManager.GetActiveScene().name == "GameOver")
         {
             InstantiateGameOverObjects();
-            //ScoreController.GetComponent<ScoreController>()
+            _hasLoaded = true;
         }
 	}
 
@@ -29,8 +33,12 @@ public class GameOverController : MonoBehaviour
             GameObject lights = GameObject.Instantiate(Resources.Load("DirectionalLight")) as GameObject;
             lights.name = "DirectionalLight";
         }
+        if(GameObject.Find("Background").GetComponent<BGScroll>().enabled)
+        {
+            GameObject.Find("Background").GetComponent<BGScroll>().Speed /= 2;
+        }
 
+        ScoreController.GetComponent<ScoreController>().DisplayGameOverStats();
     }
-
-
+    
 }

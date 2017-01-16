@@ -26,7 +26,7 @@ public class TrumpController : MonoBehaviour
             SoundController = GameObject.Find("SoundController");
         }
         playerSpeed = 5;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(ScriptController);
     }
 	
 	// Update is called once per frame

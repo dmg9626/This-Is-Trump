@@ -12,7 +12,7 @@ public class ScoreController : MonoBehaviour
     private int _cameraManKills;
     private int _score;
     private int _time;
-    public GameObject EnemyThatKilledYou; // enemy that killed you
+    private string _enemyName;
 
 	// Use this for initialization
 	void Start () 
@@ -34,21 +34,26 @@ public class ScoreController : MonoBehaviour
         ScoreText.GetComponent<Text>().text = "Score: \n " + Score;
     }
 
-    public void GameOverStats(int badHombreKills, int cameraManKills, float time)
+    public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, float time)
     {
         _badHombreKills = badHombreKills;
         _cameraManKills = cameraManKills;
         _time = (int)time;
-
-        Debug.Log("Bad Hombres Killed: " + _badHombreKills);
-        Debug.Log("Liberal Media Killed: " + _cameraManKills);
-        Debug.Log("Time: " + _time);
-        Debug.Log("Score " + Score);
+        _enemyName = enemy.name;
     }
 
     public void DisplayGameOverStats()
     {
         GameObject gameOverMessage = GameObject.Find("GameOverMessage");
-        gameOverMessage.GetComponent<GUIText>().text += "";
+        switch(_enemyName)
+        {
+            case "Bad Hombre":
+                _enemyName = "a Bad Hombre";
+                break;
+            case "Camera Man":
+                _enemyName = "the \nBiased Liberal Media";
+                break;
+        }
+        gameOverMessage.GetComponent<TextMesh>().text += _enemyName + "!";
     }
 }

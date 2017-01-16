@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BGScroll : MonoBehaviour 
 {
-	public float speed;
+	public float Speed;
 	// Use this for initialization
 	void Start () 
 	{
@@ -13,7 +13,7 @@ public class BGScroll : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		Vector2 offset = new Vector2 (Time.time * speed, 0);
+		Vector2 offset = new Vector2 (Time.time * Speed, 0);
 		GetComponent<Renderer>().material.mainTextureOffset = offset;
 	}
 }

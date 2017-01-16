@@ -28,13 +28,13 @@ public class EnemySpawn : MonoBehaviour
             if(y >= 50)
             {
                 clone = Instantiate(Resources.Load("BadHombre")) as GameObject;
-                clone.name = "BadHombre";
+                clone.name = "Bad Hombre";
                 ScriptController.GetComponent<Stats>().BadHombreSpawned(); // causing a Null Reference exception
             }
             if (y < 50)
             {
                 clone = Instantiate(Resources.Load("CameraMan")) as GameObject;
-                clone.name = "CameraMan";
+                clone.name = "Camera Man";
                 ScriptController.GetComponent<Stats>().CameraManSpawned(); // causing a Null Reference exception
             }
 

@@ -34,8 +34,9 @@ public class Stats : MonoBehaviour
                 }
             case "GameOver":
                 {
-                    ScoreController.GetComponent<ScoreController>().GameOverStats(_badHombreKillCount, _cameraManKillCount, time);
-                    //GameObject.Destroy(ScriptController);
+                    GameObject enemy = GameObject.Find("Donald").GetComponent<Damage>().Enemy;
+                    ScoreController.GetComponent<ScoreController>().SetGameOverStats(enemy, _badHombreKillCount, _cameraManKillCount, time);
+                    
                     break;
                 }
             default:

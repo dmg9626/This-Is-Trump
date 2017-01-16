@@ -28,7 +28,7 @@ public class WallDestroy : MonoBehaviour
     {
         if (col.gameObject.tag == "Enemy")
         {
-            if (col.gameObject.name == "BadHombre")
+            if (col.gameObject.name == "Bad Hombre")
             {
                 GameObject.Destroy(col.gameObject);
 

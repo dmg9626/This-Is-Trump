@@ -7,11 +7,14 @@ public class Damage : MonoBehaviour
 {
     public int Lives;
     GameObject ScriptController;
-	// Use this for initialization
-	void Start () 
+    GameObject ScoreController;
+    public GameObject Enemy;
+    // Use this for initialization
+    void Start () 
     {
         ScriptController = GameObject.Find("ScriptController");
-	}
+        ScoreController = GameObject.Find("ScoreController");
+    }
 	
 	// Update is called once per frame
 	void Update () 
@@ -19,7 +22,7 @@ public class Damage : MonoBehaviour
 		
 	}
 
-    void OnCollisionEnter2D(Collision2D col)
+    public void OnCollisionEnter2D(Collision2D col)
     {
         if (Lives > 1)
         {
@@ -34,15 +37,19 @@ public class Damage : MonoBehaviour
         else
         {
             // game over condition
-            ScriptController.GetComponent<Stats>().SetUpNewScene("GameOver");
-            MonoBehaviour[] scriptComponents = ScriptController.GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour script in scriptComponents)
-            {
-                Debug.Log("Found script " + script.GetType().Name);
-            }
-            GameObject.Destroy(ScriptController);
-            SceneManager.LoadScene("GameOver");
+            Enemy = col.gameObject;
+            LoadGameOver();
         }
+    }
+
+    private void LoadGameOver()
+    {
+        ScriptController.GetComponent<Stats>().SetUpNewScene("GameOver");
+        ScoreController.GetComponent<GameOverController>().enabled = true;
+        GameObject.Destroy(ScriptController);
+        DontDestroyOnLoad(ScoreController);
+
+        SceneManager.LoadScene("GameOver");
     }
 
 
