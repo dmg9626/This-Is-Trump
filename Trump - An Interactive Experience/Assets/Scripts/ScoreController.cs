@@ -57,8 +57,14 @@ public class ScoreController : MonoBehaviour
 
         GameObject gameOverStats = GameObject.Find("GameOverStats");
         gameOverStats.GetComponent<Text>().text = "Score: " + Score + "\n";
-        gameOverStats.GetComponent<Text>().text += "You kicked out " + _badHombreKills + " Bad Hombres\n";
-        gameOverStats.GetComponent<Text>().text += "You shut down " + _cameraManKills + " Biased Liberal Medias\n";
-        gameOverStats.GetComponent<Text>().text += "You were president for " + _time + " seconds\n";
+
+        gameOverStats.GetComponent<Text>().text += string.Format("You kicked out {0} Bad Hombre{1}", _badHombreKills, FormatStatEnding(_badHombreKills));
+        gameOverStats.GetComponent<Text>().text += string.Format("You shut down {0} Biased Liberal Media{1}", _cameraManKills, FormatStatEnding(_cameraManKills));
+        gameOverStats.GetComponent<Text>().text += string.Format("You were president for {0} second{1}", _time, FormatStatEnding(_time));
+    }
+
+    private string FormatStatEnding(int number)
+    {
+        return number != 1 ?  "s\n" : "\n";
     }
 }

@@ -10,8 +10,8 @@ public class TrumpController : MonoBehaviour
     public GameObject ScriptController;
     public GameObject SoundController;
 
-    private int _badHombreKills;
-    private int _cameraManKills;
+    private float _screenBoundaryLeft = -5.8F;
+    private float _screenBoundaryRight = 10.25F;
 
 	// Use this for initialization
 	void Start ()
@@ -41,11 +41,13 @@ public class TrumpController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                Donald.transform.position = new Vector2(Donald.transform.position.x - playerSpeed * Time.deltaTime, Donald.transform.position.y);
+                if(Donald.transform.position.x > _screenBoundaryLeft)
+                    Donald.transform.position = new Vector2(Donald.transform.position.x - playerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                Donald.transform.position = new Vector2(Donald.transform.position.x + playerSpeed * Time.deltaTime, Donald.transform.position.y);
+                if(Donald.transform.position.x < 10)
+                    Donald.transform.position = new Vector2(Donald.transform.position.x + playerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.Space))
             {
@@ -65,6 +67,8 @@ public class TrumpController : MonoBehaviour
             }
         }
     }
+
+    
 
 
     

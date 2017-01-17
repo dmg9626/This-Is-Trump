@@ -24,21 +24,20 @@ public class Damage : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D col)
     {
-        if (Lives > 1)
+        if (col.gameObject.tag == "Enemy")
         {
-
-            if (col.gameObject.tag == "Enemy")
+            if (Lives > 1)
             {
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
                 Lives--;
                 ScriptController.GetComponent<Stats>().RemoveHeart(Lives);
             }
-        }
-        else
-        {
-            // game over condition
-            Enemy = col.gameObject;
-            LoadGameOver();
+            else
+            {
+                // game over condition
+                Enemy = col.gameObject;
+                LoadGameOver();
+            }
         }
     }
 
