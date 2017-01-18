@@ -12,7 +12,7 @@ public class TrumpController : MonoBehaviour
 
     private float _screenBoundaryLeft = -5.8F;
     private float _screenBoundaryRight = 10.25F;
-    private float _killBoundaryLeft = -8.5F;
+    //private float _killBoundaryLeft = -8.5F;
 
     // Use this for initialization
     void Start ()
