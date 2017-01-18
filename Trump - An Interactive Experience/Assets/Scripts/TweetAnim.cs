@@ -12,6 +12,7 @@ public class TweetAnim : MonoBehaviour {
 
     public GameObject Donald;
     public GameObject DonaldTweet;
+    private GameObject ScriptController;
     Vector2 _trumpPos;
     // Use this for initialization
     void Start ()
@@ -20,6 +21,8 @@ public class TweetAnim : MonoBehaviour {
         _beginAnimating = false;
         _canBeginAnimating = true;
         _finishedAnimating = false;
+
+        ScriptController = GameObject.Find("ScriptController");
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class TweetAnim : MonoBehaviour {
 
                 _isAnimating = true;
                 _beginAnimating = false;
+                ScriptController.GetComponent<TrumpController>().CanControl = false;
             }
         }
 
@@ -51,9 +55,10 @@ public class TweetAnim : MonoBehaviour {
                 _trumpPos = DonaldTweet.transform.position;
                 Destroy(DonaldTweet);
                 Donald.SetActive(true);
-                GameObject.Find("ScriptController").GetComponent<TrumpController>().Donald = Donald;
+                ScriptController.GetComponent<TrumpController>().Donald = Donald;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
+                ScriptController.GetComponent<TrumpController>().CanControl = true;
             }
         }
     }

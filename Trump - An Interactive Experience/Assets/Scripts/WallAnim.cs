@@ -17,6 +17,7 @@ public class WallAnim : MonoBehaviour
 
     public GameObject Donald;
     public GameObject DonaldWall;
+    public GameObject ScriptController;
     Vector2 _trumpPos;
 	// Use this for initialization
 	void Start ()
@@ -25,13 +26,16 @@ public class WallAnim : MonoBehaviour
 		_beginAnimating = false;
         _canBeginAnimating = true;
         _finishedAnimating = false;
-	}
+
+        ScriptController = GameObject.Find("ScriptController");
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		if (_beginAnimating) 
+		if (_beginAnimating)
         {
+            ScriptController.GetComponent<TrumpController>().CanControl = false;
             Donald = GameObject.Find("Donald");
             _canBeginAnimating = false;
 			if (!_isAnimating) 
@@ -56,7 +60,8 @@ public class WallAnim : MonoBehaviour
                 _trumpPos = DonaldWall.transform.position;
                 Destroy(DonaldWall);
                 Donald.SetActive(true);
-                GameObject.Find("ScriptController").GetComponent<TrumpController>().Donald = Donald;
+                ScriptController.GetComponent<TrumpController>().Donald = Donald;
+                ScriptController.GetComponent<TrumpController>().CanControl = true;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }

@@ -41,7 +41,7 @@ public class Damage : MonoBehaviour
         }
     }
 
-    private void LoadGameOver()
+    public void LoadGameOver()
     {
         ScriptController.GetComponent<Stats>().SetUpNewScene("GameOver");
         ScoreController.GetComponent<GameOverController>().enabled = true;

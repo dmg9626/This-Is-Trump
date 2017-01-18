@@ -43,6 +43,11 @@ public class SoundManager : MonoBehaviour
                     GameOverMusic();
                     break;
                 }
+            case "MainMenu":
+                {
+                    GameMusic();
+                    break;
+                }
         }
 
 	}
@@ -55,6 +60,7 @@ public class SoundManager : MonoBehaviour
             // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
             _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
             _gameMusic.name = "GameMusic";
+            DontDestroyOnLoad(_gameMusic);
         }
 
         // don't destory SoundObject when switching scenes

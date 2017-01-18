@@ -37,7 +37,7 @@ public class GameOverController : MonoBehaviour
         {
             GameObject.Find("Background").GetComponent<BGScroll>().Speed /= 2;
         }
-
+        GameObject.Destroy(GameObject.Find("GameMusic"));
         ScoreController.GetComponent<ScoreController>().DisplayGameOverStats();
     }
     

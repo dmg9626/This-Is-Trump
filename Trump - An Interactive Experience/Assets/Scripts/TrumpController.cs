@@ -4,17 +4,18 @@ using System.Collections;
 
 public class TrumpController : MonoBehaviour
 {
-    public bool canMove = true;
-    public float playerSpeed;
+    public bool CanControl = true;
+    public float PlayerSpeed;
     public GameObject Donald;
     public GameObject ScriptController;
     public GameObject SoundController;
 
     private float _screenBoundaryLeft = -5.8F;
     private float _screenBoundaryRight = 10.25F;
+    private float _killBoundaryLeft = -8.5F;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         if(!GameObject.Find("Donald"))
         {
@@ -23,9 +24,9 @@ public class TrumpController : MonoBehaviour
             Donald.GetComponent<Damage>().Lives = 5;
 
             ScriptController = GameObject.Find("ScriptController");
-            SoundController = GameObject.Find("SoundController");
         }
-        playerSpeed = 5;
+        PlayerSpeed = 5;
+        CanControl = true;
         DontDestroyOnLoad(ScriptController);
     }
 	
@@ -33,21 +34,24 @@ public class TrumpController : MonoBehaviour
 	void Update ()
     {
         InputHandler();
+
+        // if(Donald.transform.position.x <= _killBoundaryLeft)
+            // kill donald
     }
 
     void InputHandler()
     {
-        if(!ScriptController.GetComponent<WallAnim>()._isAnimating && !ScriptController.GetComponent<TweetAnim>()._isAnimating)
+        if(CanControl)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
                 if(Donald.transform.position.x > _screenBoundaryLeft)
-                    Donald.transform.position = new Vector2(Donald.transform.position.x - playerSpeed * Time.deltaTime, Donald.transform.position.y);
+                    Donald.transform.position = new Vector2(Donald.transform.position.x - PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 if(Donald.transform.position.x < 10)
-                    Donald.transform.position = new Vector2(Donald.transform.position.x + playerSpeed * Time.deltaTime, Donald.transform.position.y);
+                    Donald.transform.position = new Vector2(Donald.transform.position.x + PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.Space))
             {
@@ -56,20 +60,15 @@ public class TrumpController : MonoBehaviour
                     GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
                     tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
                     tweet.name = "Tweet";
-                    ScriptController.GetComponent<TweetAnim>()._beginAnimating = true;
+                    ScriptController.GetComponent<TweetAnim>()._beginAnimating = true; // trigger animation
+                    ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
                 }
             }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
-                SoundController.GetComponent<SoundManager>().DonaldSoundEffect();
-
+                ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
             }
         }
     }
-
-    
-
-
-    
 }
