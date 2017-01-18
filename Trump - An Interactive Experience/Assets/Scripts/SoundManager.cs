@@ -25,7 +25,6 @@ using System.Collections;
 public class SoundManager : MonoBehaviour
 {
     GameObject _gameMusic;
-    GameObject _gameOverMusic;
 
     // Use this for initialization
     void Start ()
@@ -55,11 +54,11 @@ public class SoundManager : MonoBehaviour
 
     public void GameMusic()
     {
-        if (!GameObject.Find("GameMusic"))
+        if (!GameObject.Find("Music_GameMusic"))
         {
             // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
             _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
-            _gameMusic.name = "GameMusic";
+            _gameMusic.name = "Music_GameMusic";
             DontDestroyOnLoad(_gameMusic);
         }
 
@@ -70,10 +69,10 @@ public class SoundManager : MonoBehaviour
 
     public void GameOverMusic()
     {
-        if (!GameObject.Find("GameOverMusic"))
+        if (!GameObject.Find("Music_GameOverMusic"))
         {
             _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
-            _gameMusic.name = "GameOverMusic";
+            _gameMusic.name = "Music_GameOverMusic";
         }
     }
 
@@ -98,26 +97,5 @@ public class SoundManager : MonoBehaviour
 
         }
         Destroy(sound, sound.GetComponent<AudioSource>().clip.length);
-    }
-
-    public void Moo()
-    {
-        int rand = Random.Range(0, 2) + 1;
-        GameObject moo;
-        if (rand == 1)
-        {
-            moo = Instantiate(Resources.Load("Sound_Moo1")) as GameObject;
-            Destroy(moo, 2);
-        }
-        else if (rand == 2)
-        {
-            moo = Instantiate(Resources.Load("Sound_Moo2")) as GameObject;
-            Destroy(moo, 2);
-        }
-        else if (rand == 3)
-        {
-            moo = Instantiate(Resources.Load("Sound_Moo3")) as GameObject;
-            Destroy(moo, 2);
-        }
     }
 }
