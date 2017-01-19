@@ -21,7 +21,7 @@ public class MainMenuController : MonoBehaviour
             LoadGame();
         if (Input.GetKeyDown(KeyCode.Q))
             Application.Quit();
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.W))
             gameObject.GetComponent<SoundManager>().DonaldSoundEffect();
 	}
 

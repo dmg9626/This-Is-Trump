@@ -57,7 +57,7 @@ public class GameOverController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            LoadScene("Game");
+            LoadScene("MainMenu");
         }
     }
 
