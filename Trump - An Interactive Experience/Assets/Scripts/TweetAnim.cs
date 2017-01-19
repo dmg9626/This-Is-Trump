@@ -42,7 +42,7 @@ public class TweetAnim : MonoBehaviour {
 
                 _isAnimating = true;
                 _beginAnimating = false;
-                ScriptController.GetComponent<TrumpController>().CanControl = false;
+                ScriptController.GetComponent<TrumpController>().CanMove = false;
             }
         }
 
@@ -58,7 +58,7 @@ public class TweetAnim : MonoBehaviour {
                 ScriptController.GetComponent<TrumpController>().Donald = Donald;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
-                ScriptController.GetComponent<TrumpController>().CanControl = true;
+                ScriptController.GetComponent<TrumpController>().CanMove = true;
             }
         }
     }

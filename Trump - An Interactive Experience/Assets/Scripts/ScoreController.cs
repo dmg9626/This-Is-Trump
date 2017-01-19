@@ -7,6 +7,7 @@ public class ScoreController : MonoBehaviour
 {
     public int Score;
     public GameObject ScoreText;
+    GameObject PromptText;
 
     private int _badHombreKills;
     private int _cameraManKills;
@@ -18,6 +19,7 @@ public class ScoreController : MonoBehaviour
     {
         Score = 0;
         ScoreText = GameObject.Find("Score");
+
         ScoreText.GetComponent<Text>().text = "Score: \n " + Score;
 	}
 	
@@ -61,10 +63,18 @@ public class ScoreController : MonoBehaviour
         gameOverStats.GetComponent<Text>().text += string.Format("You kicked out {0} Bad Hombre{1}", _badHombreKills, FormatStatEnding(_badHombreKills));
         gameOverStats.GetComponent<Text>().text += string.Format("You shut down {0} Biased Liberal Media{1}", _cameraManKills, FormatStatEnding(_cameraManKills));
         gameOverStats.GetComponent<Text>().text += string.Format("You were president for {0} second{1}", _time, FormatStatEnding(_time));
+
+        PromptText = GameObject.Find("PromptText");
+        InvokeRepeating("ToggleText", 1, .5F);
     }
 
     private string FormatStatEnding(int number)
     {
         return number != 1 ?  "s\n" : "\n";
+    }
+
+    public void ToggleText()
+    {
+        PromptText.SetActive(!PromptText.activeSelf);
     }
 }

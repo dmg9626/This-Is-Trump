@@ -35,7 +35,7 @@ public class WallAnim : MonoBehaviour
     {
 		if (_beginAnimating)
         {
-            ScriptController.GetComponent<TrumpController>().CanControl = false;
+            ScriptController.GetComponent<TrumpController>().CanMove = false;
             Donald = GameObject.Find("Donald");
             _canBeginAnimating = false;
 			if (!_isAnimating) 
@@ -61,7 +61,7 @@ public class WallAnim : MonoBehaviour
                 Destroy(DonaldWall);
                 Donald.SetActive(true);
                 ScriptController.GetComponent<TrumpController>().Donald = Donald;
-                ScriptController.GetComponent<TrumpController>().CanControl = true;
+                ScriptController.GetComponent<TrumpController>().CanMove = true;
                 _finishedAnimating = false;
                 _canBeginAnimating = true;
             }

@@ -73,6 +73,7 @@ public class SoundManager : MonoBehaviour
         {
             _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
             _gameMusic.name = "Music_GameOverMusic";
+            DontDestroyOnLoad(_gameMusic);
         }
     }
 

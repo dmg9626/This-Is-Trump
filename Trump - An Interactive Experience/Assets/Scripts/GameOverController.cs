@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour
 {
     GameObject ScoreController;
-    GameObject ScriptController;
+    GameObject PromptText;
     private bool _hasLoaded;
     // Use this for initialization
     void Start () 
     {
         ScoreController = GameObject.Find("ScoreController");
-        ScriptController = GameObject.Find("ScriptController");
+
         _hasLoaded = false;
 	}
 	
@@ -23,6 +23,10 @@ public class GameOverController : MonoBehaviour
         {
             InstantiateGameOverObjects();
             _hasLoaded = true;
+        }
+        else if(_hasLoaded == true)
+        {
+            InputHandler();
         }
 	}
 
@@ -39,6 +43,28 @@ public class GameOverController : MonoBehaviour
         }
         GameObject.Destroy(GameObject.Find("Music_GameMusic"));
         ScoreController.GetComponent<ScoreController>().DisplayGameOverStats();
+
+        PromptText = GameObject.Find("PromptText");
+        InvokeRepeating("ToggleText", 1, .5F);
     }
-    
+
+    void ToggleText()
+    {
+        PromptText.SetActive(!PromptText.activeSelf);
+    }
+
+    void InputHandler()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            LoadScene("Game");
+        }
+    }
+
+    void LoadScene(string sceneName)
+    {
+        GameObject.Destroy(ScoreController);
+        GameObject.Destroy(GameObject.Find("Music_GameOverMusic"));
+        SceneManager.LoadScene(sceneName);
+    }
 }

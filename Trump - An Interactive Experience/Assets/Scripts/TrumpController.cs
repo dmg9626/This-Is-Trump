@@ -4,7 +4,8 @@ using System.Collections;
 
 public class TrumpController : MonoBehaviour
 {
-    public bool CanControl = true;
+    public bool CanMove;
+    public bool CanAct;
     public float PlayerSpeed;
     public GameObject Donald;
     public GameObject ScriptController;
@@ -25,8 +26,17 @@ public class TrumpController : MonoBehaviour
 
             ScriptController = GameObject.Find("ScriptController");
         }
-        PlayerSpeed = 5;
-        CanControl = true;
+        if (SceneManager.GetActiveScene().name == "GrabThePussy")
+        {
+            PlayerSpeed = 4;
+            CanAct = false;
+        }
+        else
+        {
+            PlayerSpeed = 5;
+            CanAct = true;
+        }
+        CanMove = true;
         DontDestroyOnLoad(ScriptController);
     }
 	
@@ -41,7 +51,7 @@ public class TrumpController : MonoBehaviour
 
     void InputHandler()
     {
-        if(CanControl)
+        if(CanMove)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
@@ -50,24 +60,27 @@ public class TrumpController : MonoBehaviour
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                if(Donald.transform.position.x < 10)
+                if(Donald.transform.position.x < _screenBoundaryRight)
                     Donald.transform.position = new Vector2(Donald.transform.position.x + PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
-            if (Input.GetKey(KeyCode.Space))
+            if (CanAct)
             {
-                if(!GameObject.Find("Tweet"))
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
-                    tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
-                    tweet.name = "Tweet";
-                    ScriptController.GetComponent<TweetAnim>()._beginAnimating = true; // trigger animation
+                    if(!GameObject.Find("Tweet"))
+                    {
+                        GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
+                        tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
+                        tweet.name = "Tweet";
+                        ScriptController.GetComponent<TweetAnim>()._beginAnimating = true; // trigger animation
+                        ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
+                    }
+                }
+                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                {
+                    ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
                     ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
                 }
-            }
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
-                ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
             }
         }
     }
