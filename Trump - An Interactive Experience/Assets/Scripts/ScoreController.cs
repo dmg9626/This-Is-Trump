@@ -7,11 +7,12 @@ public class ScoreController : MonoBehaviour
 {
     public int Score;
     public GameObject ScoreText;
+    public GameObject YearText;
     GameObject PromptText;
 
     private int _badHombreKills;
     private int _cameraManKills;
-    private int _time;
+    private int _level;
     private string _enemyName;
 
 	// Use this for initialization
@@ -19,6 +20,7 @@ public class ScoreController : MonoBehaviour
     {
         Score = 0;
         ScoreText = GameObject.Find("Score");
+        YearText = GameObject.Find("YearsInOffice");
 
         ScoreText.GetComponent<TextMesh>().text = "Score: \n " + Score;
 	}
@@ -29,17 +31,22 @@ public class ScoreController : MonoBehaviour
 		
 	}
 
-    public void UpdateScore(int scoreIncrease)
+    public void IncreaseScore(int scoreIncrease)
     {
         Score += scoreIncrease;
         ScoreText.GetComponent<TextMesh>().text = "Score: \n" + Score;
     }
 
-    public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, float time)
+    public void UpdateYear(int year)
+    {
+        YearText.GetComponent<TextMesh>().text = "Years in Office: \n" + year;
+    }
+
+    public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, int level)
     {
         _badHombreKills = badHombreKills;
         _cameraManKills = cameraManKills;
-        _time = (int)time;
+        _level = level;
         _enemyName = enemy.name;
     }
 
@@ -61,7 +68,7 @@ public class ScoreController : MonoBehaviour
 
         gameOverStats.GetComponent<TextMesh>().text += string.Format("You kicked out {0} Bad Hombre{1}", _badHombreKills, FormatStatEnding(_badHombreKills));
         gameOverStats.GetComponent<TextMesh>().text += string.Format("You shut down {0} Biased Liberal Media{1}", _cameraManKills, FormatStatEnding(_cameraManKills));
-        gameOverStats.GetComponent<TextMesh>().text += string.Format("You were president for {0} second{1}", _time, FormatStatEnding(_time));
+        gameOverStats.GetComponent<TextMesh>().text += string.Format("You were president for {0} year{1}", _level, FormatStatEnding(_level));
 
         PromptText = GameObject.Find("PromptText");
         InvokeRepeating("ToggleText", 1, .5F);

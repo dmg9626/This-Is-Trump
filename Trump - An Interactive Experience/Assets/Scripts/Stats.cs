@@ -35,7 +35,8 @@ public class Stats : MonoBehaviour
             case "GameOver":
                 {
                     GameObject enemy = GameObject.Find("Donald").GetComponent<Damage>().Enemy;
-                    ScoreController.GetComponent<ScoreController>().SetGameOverStats(enemy, _badHombreKillCount, _cameraManKillCount, time);
+                    int level = ScriptController.GetComponent<EnemySpawn>().LevelIndex;
+                    ScoreController.GetComponent<ScoreController>().SetGameOverStats(enemy, _badHombreKillCount, _cameraManKillCount, level);
                     
                     break;
                 }
@@ -83,7 +84,7 @@ public class Stats : MonoBehaviour
     public void BadHombreKilled()
     {
         _badHombreKillCount++;
-        ScoreController.GetComponent<ScoreController>().UpdateScore(500);
+        ScoreController.GetComponent<ScoreController>().IncreaseScore(500);
     }
     public void BadHombreSpawned()
     {
@@ -92,7 +93,7 @@ public class Stats : MonoBehaviour
     public void CameraManKilled()
     {
         _cameraManKillCount++;
-        ScoreController.GetComponent<ScoreController>().UpdateScore(350);
+        ScoreController.GetComponent<ScoreController>().IncreaseScore(350);
     }
     public void CameraManSpawned()
     {

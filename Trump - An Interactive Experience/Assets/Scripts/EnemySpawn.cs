@@ -2,20 +2,22 @@
 using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 
-public class EnemySpawn : MonoBehaviour 
+public class EnemySpawn : MonoBehaviour
 {
     private GameObject ScriptController;
+    private GameObject ScoreController;
     private GameObject BadHombre;
     private GameObject CameraMan;
 
     private bool _canLevelUp = false;
     private float _frequency = 1.5F;
-    public int LevelIndex = 1;
+    public int LevelIndex = 0;
     
     // Use this for initialization
     void Start ()
     {
         ScriptController = GameObject.Find("ScriptController");
+        ScoreController = GameObject.Find("ScoreController");
         BadHombre = Resources.Load("BadHombre") as GameObject;
         CameraMan = Resources.Load("CameraMan") as GameObject;
 
@@ -86,6 +88,7 @@ public class EnemySpawn : MonoBehaviour
             CameraMan.GetComponent<CameraManMove>().LevelUp();
         }
         _canLevelUp = false;
+        ScoreController.GetComponent<ScoreController>().UpdateYear(LevelIndex);
 
         Debug.Log("Level " + LevelIndex);
     }
