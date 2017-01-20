@@ -52,6 +52,25 @@ public class ScoreController : MonoBehaviour
 
     public void DisplayGameOverStats()
     {
+        TextMesh RankText = GameObject.Find("RankMessage").GetComponent<TextMesh>();
+        string rank = null;
+        if (_level <= 2)
+        {
+            rank = "Small Hands";
+        }
+        else if (_level <= 4)
+        {
+            rank = "Drumpf";
+        }
+        else if (_level <= 6)
+        {
+            rank = "Deplorable";
+        }
+        else
+            rank = "4 Dimensional Chess";
+        
+        RankText.text = string.Format("Rank: {0}", rank);
+
         GameObject gameOverMessage = GameObject.Find("GameOverMessage");
         switch(_enemyName)
         {
