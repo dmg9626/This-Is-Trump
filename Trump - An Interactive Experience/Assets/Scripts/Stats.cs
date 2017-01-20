@@ -127,4 +127,11 @@ public class Stats : MonoBehaviour
             return _cameraManKillCount;
         }
     }
+    public int SpawnCount
+    {
+        get
+        {
+            return _badHombreSpawnCount + _cameraManSpawnCount;
+        }
+    }
 }

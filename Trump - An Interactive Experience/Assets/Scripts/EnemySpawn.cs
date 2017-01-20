@@ -4,24 +4,30 @@ using System.Collections;
 
 public class EnemySpawn : MonoBehaviour 
 {
-    GameObject ScriptController;
-    private float _time = 0;
+    private GameObject ScriptController;
+    private GameObject BadHombre;
+    private GameObject CameraMan;
+
+    private bool _canLevelUp = false;
     private float _frequency = 1.5F;
-    public int hombreIndex = 0;
-    public int cameraManIndex = 0;
-    public float levelIndex = 1;
+    public int LevelIndex = 1;
     
     // Use this for initialization
     void Start ()
     {
         ScriptController = GameObject.Find("ScriptController");
-	}
+        BadHombre = Resources.Load("BadHombre") as GameObject;
+        CameraMan = Resources.Load("CameraMan") as GameObject;
+
+        InvokeRepeating("Spawn", .5F, _frequency);
+        Debug.Log("Level " + LevelIndex);
+    }
 
 	void Spawn()
 	{
 		int randomNumber = Random.Range(0, 100); // random number from 0 to 100
 
-		if (randomNumber >= 0 && randomNumber <= 70) // default 50% chance to spawn cow
+		if (randomNumber >= 0 && randomNumber <= 70)
 		{
 			GameObject clone;
             int y = Random.Range(0, 100);
@@ -37,45 +43,50 @@ public class EnemySpawn : MonoBehaviour
                 clone.name = "Camera Man";
                 ScriptController.GetComponent<Stats>().CameraManSpawned(); // causing a Null Reference exception
             }
-
-            // spawns a prefab to the left of the screen
-            // and casts it as a GameObject so it can be spawned in the scene
-            // MAKE SURE THE PREFAB EXISTS IN THE RESOURCES FOLDER
-            // ** MAKE DOUBLE SURE THAT THERE IS IN FACT A RESOURCES FOLDER ** //
+            _canLevelUp = true;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-        // this shit doesn't work
-        //int totalSpawns = ScriptController.GetComponent<Stats>().BadHombreSpawnCount + ScriptController.GetComponent<Stats>().CameraManSpawnCount;
-        //if (totalSpawns > 0 && totalSpawns % 20 == 0 )
-        //{
-        //    if (levelIndex > 1)
-        //    {
-        //        CancelInvoke();
-        //    }
-        //    Debug.Log("level " + levelIndex);
-        //    _frequency *= .8F;
-        //    levelIndex++;
-        //
-        //    InvokeRepeating("Spawn", 1, _frequency);
-        //}
-        //
-        if(_time % 20 == 0)
+        if(ScriptController.GetComponent<Stats>().SpawnCount % 10 == 0 && _canLevelUp)
         {
-            if (levelIndex > 1)
-            {
-                CancelInvoke();
-            }
-            Debug.Log("level " + levelIndex);
-            _frequency *= .8F;
-            levelIndex++;
-        
-            InvokeRepeating("Spawn", 2, _frequency);
-        }
+            IncreaseLevel();
 
-        _time+= Time.deltaTime;
+            //if(ScriptController.GetComponent<Stats>().SpawnCount > 0)
+            //{
+            //    Debug.Log("level " + levelIndex);
+            //    CancelInvoke();
+
+            //    _frequency *= .8F;
+            //    levelIndex++;
+            //    InvokeRepeating("Spawn", 2, _frequency);
+            //}
+            //if (levelIndex > 1)
+            //{
+
+            //}
+        }
 	}
+
+    void IncreaseLevel()
+    {
+        LevelIndex++;
+        if (LevelIndex <= 2)
+        {
+            _frequency *= .8F;
+
+            CancelInvoke();
+            InvokeRepeating("Spawn", .5F, _frequency);
+        }
+        else
+        {
+            BadHombre.GetComponent<BadHombreMove>().LevelUp();
+            CameraMan.GetComponent<CameraManMove>().LevelUp();
+        }
+        _canLevelUp = false;
+
+        Debug.Log("Level " + LevelIndex);
+    }
 }

@@ -46,6 +46,7 @@ public class GameOverController : MonoBehaviour
 
         PromptText = GameObject.Find("PromptText");
         InvokeRepeating("ToggleText", 1, .5F);
+        ResetLevel();
     }
 
     void ToggleText()
@@ -67,5 +68,13 @@ public class GameOverController : MonoBehaviour
         GameObject.Destroy(ScoreController);
         GameObject.Destroy(GameObject.Find("Music_GameOverMusic"));
         SceneManager.LoadScene(sceneName);
+    }
+
+    void ResetLevel()
+    {
+        GameObject BadHombre = Resources.Load("BadHombre") as GameObject;
+        GameObject CameraMan = Resources.Load("CameraMan") as GameObject;
+        BadHombre.GetComponent<BadHombreMove>().ResetLevel();
+        CameraMan.GetComponent<CameraManMove>().ResetLevel();
     }
 }

@@ -16,9 +16,9 @@ public class TrumpController : MonoBehaviour
     //private float _killBoundaryLeft = -8.5F;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        if(!GameObject.Find("Donald"))
+        if (!GameObject.Find("Donald"))
         {
             Donald = Instantiate(Resources.Load("Donald")) as GameObject;
             Donald.name = "Donald";
@@ -39,35 +39,35 @@ public class TrumpController : MonoBehaviour
         CanMove = true;
         DontDestroyOnLoad(ScriptController);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         InputHandler();
 
         // if(Donald.transform.position.x <= _killBoundaryLeft)
-            // kill donald
+        // kill donald
     }
 
     void InputHandler()
     {
-        if(CanMove)
+        if (CanMove)
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                if(Donald.transform.position.x > _screenBoundaryLeft)
+                if (Donald.transform.position.x > _screenBoundaryLeft)
                     Donald.transform.position = new Vector2(Donald.transform.position.x - PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                if(Donald.transform.position.x < _screenBoundaryRight)
+                if (Donald.transform.position.x < _screenBoundaryRight)
                     Donald.transform.position = new Vector2(Donald.transform.position.x + PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (CanAct)
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if(!GameObject.Find("Tweet"))
+                    if (!GameObject.Find("Tweet"))
                     {
                         GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
                         tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
