@@ -22,9 +22,10 @@ Unity is a very active platform for indie developers, and I wanted to get comfor
 
 ## Credits
 
-Brian Luebbert-Hill - scripting in beta
-Robin Kuhns - pixel art
-Abigail Ireland - pixel art
-Ryan Feldman - ideas, fixed Windows build
+- Brian Luebbert-Hill - scripting in beta
+- Robin Kuhns - pixel art
+- Abigail Ireland - pixel art
+- Ryan Feldman - ideas, fixed Windows build
+
 
 and all my friends at Cirque du Twerque for making me love hackathon culture and giving me the drive to make this game. I would never be the developer I am today without you all <3
