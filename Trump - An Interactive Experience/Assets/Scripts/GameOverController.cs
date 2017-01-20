@@ -56,7 +56,7 @@ public class GameOverController : MonoBehaviour
 
     void InputHandler()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Return))
             LoadScene("MainMenu");
         
         if (Input.GetKeyDown(KeyCode.Q))
