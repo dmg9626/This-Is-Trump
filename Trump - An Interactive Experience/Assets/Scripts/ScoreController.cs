@@ -20,7 +20,7 @@ public class ScoreController : MonoBehaviour
         Score = 0;
         ScoreText = GameObject.Find("Score");
 
-        ScoreText.GetComponent<Text>().text = "Score: \n " + Score;
+        ScoreText.GetComponent<TextMesh>().text = "Score: \n " + Score;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,7 @@ public class ScoreController : MonoBehaviour
     public void UpdateScore(int scoreIncrease)
     {
         Score += scoreIncrease;
-        ScoreText.GetComponent<Text>().text = "Score: \n" + Score;
+        ScoreText.GetComponent<TextMesh>().text = "Score: \n" + Score;
     }
 
     public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, float time)
@@ -55,14 +55,13 @@ public class ScoreController : MonoBehaviour
                 _enemyName = "the \nBiased Liberal Media";
                 break;
         }
-        gameOverMessage.GetComponent<TextMesh>().text += _enemyName + "!";
-
+        gameOverMessage.GetComponent<TextMesh>().text = string.Format("You got hit by {0}!", _enemyName);
         GameObject gameOverStats = GameObject.Find("GameOverStats");
-        gameOverStats.GetComponent<Text>().text = "Score: " + Score + "\n";
+        gameOverStats.GetComponent<TextMesh>().text = "Score: " + Score + "\n";
 
-        gameOverStats.GetComponent<Text>().text += string.Format("You kicked out {0} Bad Hombre{1}", _badHombreKills, FormatStatEnding(_badHombreKills));
-        gameOverStats.GetComponent<Text>().text += string.Format("You shut down {0} Biased Liberal Media{1}", _cameraManKills, FormatStatEnding(_cameraManKills));
-        gameOverStats.GetComponent<Text>().text += string.Format("You were president for {0} second{1}", _time, FormatStatEnding(_time));
+        gameOverStats.GetComponent<TextMesh>().text += string.Format("You kicked out {0} Bad Hombre{1}", _badHombreKills, FormatStatEnding(_badHombreKills));
+        gameOverStats.GetComponent<TextMesh>().text += string.Format("You shut down {0} Biased Liberal Media{1}", _cameraManKills, FormatStatEnding(_cameraManKills));
+        gameOverStats.GetComponent<TextMesh>().text += string.Format("You were president for {0} second{1}", _time, FormatStatEnding(_time));
 
         PromptText = GameObject.Find("PromptText");
         InvokeRepeating("ToggleText", 1, .5F);

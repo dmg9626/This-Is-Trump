@@ -65,7 +65,7 @@ public class TrumpController : MonoBehaviour
             }
             if (CanAct)
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     if(!GameObject.Find("Tweet"))
                     {
@@ -76,7 +76,7 @@ public class TrumpController : MonoBehaviour
                         ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
                     }
                 }
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
                     ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();

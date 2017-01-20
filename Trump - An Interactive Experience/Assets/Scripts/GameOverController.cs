@@ -55,10 +55,11 @@ public class GameOverController : MonoBehaviour
 
     void InputHandler()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
+        if (Input.GetKeyDown(KeyCode.Space))
             LoadScene("MainMenu");
-        }
+        
+        if (Input.GetKeyDown(KeyCode.Q))
+            Application.Quit();
     }
 
     void LoadScene(string sceneName)
