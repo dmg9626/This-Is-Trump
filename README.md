@@ -5,7 +5,9 @@ You play as the man in charge President Donald Trump. You are "running for presi
 ## Controls:
 
 A/D - Move left/right
+
 W - Build a wall
+
 Space - Tweet
 
 ## Installation
