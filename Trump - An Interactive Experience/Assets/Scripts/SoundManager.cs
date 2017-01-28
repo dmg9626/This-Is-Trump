@@ -1,31 +1,11 @@
-﻿/*
- * VERSION HISTORY:
- *  ---- 0.1.0 ----
- *      - Created the file
- *      - it can take in sound files from the prefab SoundObject, which contains every game sound as an Audio Source component
- *      
- * ---- 1.0.0 ----
- *      - It plays music!
- *      - when the mainMenu scene opens, it creates an instance of the Sound_GameMusic object which plays the music upon spawning
- *      - the music plays seamlessly between scenes
- *      - but when you return to the mainMenu scene it creates another instance of Sound_GameMusic, so there's 2 copies of the music playing at once
- * ---- 2.0.0 ----
- *      - The cows moo now!
- *      - the Moo() function creates one of 4 Sound_Moo objects that each play a different moo sound effect
- *      - random number determines which moo is chosen
- 
- *  * === TO DO: ===
- *      - maybe implement other sounds (tractor beam, game start, cow missed, etc.)
-*/
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class SoundManager : MonoBehaviour
 {
     GameObject _gameMusic;
-
+    private int _soundEffectIndex = 0;
     // Use this for initialization
     void Start ()
     {
@@ -79,24 +59,34 @@ public class SoundManager : MonoBehaviour
 
     public void DonaldSoundEffect()
     {
-        int rand = Random.Range(0, 3) + 1;
-        GameObject sound = null;
-        switch(rand)
+        if (_soundEffectIndex < 5)
         {
-            case 1:
-                sound = Instantiate(Resources.Load("SoundEffect_Wrong")) as GameObject;
-                sound.name = "SoundEffect_Wrong";
-                break;
-            case 2:
-                sound = Instantiate(Resources.Load("SoundEffect_BadHombres")) as GameObject;
-                sound.name = "SoundEffect_BadHombres";
-                break;
-            case 3:
-                sound = Instantiate(Resources.Load("SoundEffect_China")) as GameObject;
-                sound.name = "SoundEffect_China";
-                break;
+            int rand = Random.Range(0, 3) + 1;
+            GameObject sound = null;
+            switch (rand)
+            {
+                case 1:
+                    sound = Instantiate(Resources.Load("SoundEffect_Wrong")) as GameObject;
+                    sound.name = "SoundEffect_Wrong";
+                    break;
+                case 2:
+                    sound = Instantiate(Resources.Load("SoundEffect_BadHombres")) as GameObject;
+                    sound.name = "SoundEffect_BadHombres";
+                    break;
+                case 3:
+                    sound = Instantiate(Resources.Load("SoundEffect_China")) as GameObject;
+                    sound.name = "SoundEffect_China";
+                    break;
+            }
+            _soundEffectIndex++;
 
+            Invoke("DestroyDonaldSoundEffect", sound.GetComponent<AudioSource>().clip.length);
+            Destroy(sound, sound.GetComponent<AudioSource>().clip.length);
         }
-        Destroy(sound, sound.GetComponent<AudioSource>().clip.length);
+    }
+
+    public void DestroyDonaldSoundEffect()
+    {
+        _soundEffectIndex--;
     }
 }

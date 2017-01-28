@@ -6,8 +6,6 @@ using UnityEngine;
 public class Damage : MonoBehaviour 
 {
     public int Lives;
-    private float _screenBoundaryLeft = -5.8F;
-    private float _screenBoundaryRight = 10.25F;
     GameObject ScriptController;
     GameObject ScoreController;
     public GameObject Enemy;
@@ -30,8 +28,7 @@ public class Damage : MonoBehaviour
         {
             if (Lives > 1)
             {
-				if(gameObject.transform.position.x > _screenBoundaryLeft)
-					gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
+                gameObject.transform.position = new Vector2(gameObject.transform.position.x - 3, gameObject.transform.position.y);
                 Lives--;
                 ScriptController.GetComponent<Stats>().RemoveHeart(Lives);
             }

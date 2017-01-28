@@ -31,7 +31,6 @@ public class TweetMove : MonoBehaviour
             {
                 GameObject.Destroy(col.gameObject);
                 GameObject.Destroy(gameObject);
-
                 ScriptController.GetComponent<Stats>().CameraManKilled();
             }
             else

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     GameObject StartText;
+    private int _soundEffectIndex = 0;
 	// Use this for initialization
 	void Start ()
     {

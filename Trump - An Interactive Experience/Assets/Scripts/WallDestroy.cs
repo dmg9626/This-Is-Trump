@@ -6,11 +6,10 @@ public class WallDestroy : MonoBehaviour
 {
 
 	// Use this for initialization
-    GameObject DonaldWall;
     GameObject ScriptController;
 	void Start () 
     {
-        FindScriptController();
+        ScriptController = GameObject.Find("ScriptController");
 	}
 	
 	// Update is called once per frame
@@ -19,11 +18,6 @@ public class WallDestroy : MonoBehaviour
 		
 	}
 
-    void FindScriptController()
-    {
-        ScriptController = GameObject.Find("ScriptController");
-    }
-
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Enemy")
@@ -31,7 +25,6 @@ public class WallDestroy : MonoBehaviour
             if (col.gameObject.name == "Bad Hombre")
             {
                 GameObject.Destroy(col.gameObject);
-
                 ScriptController.GetComponent<Stats>().BadHombreKilled();
             }
             else

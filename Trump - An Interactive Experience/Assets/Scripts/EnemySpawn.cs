@@ -37,13 +37,15 @@ public class EnemySpawn : MonoBehaviour
             {
                 clone = Instantiate(Resources.Load("BadHombre")) as GameObject;
                 clone.name = "Bad Hombre";
-                ScriptController.GetComponent<Stats>().BadHombreSpawned(); // causing a Null Reference exception
+
+                ScriptController.GetComponent<Stats>().BadHombreSpawned();
             }
             if (y < 50)
             {
                 clone = Instantiate(Resources.Load("CameraMan")) as GameObject;
                 clone.name = "Camera Man";
-                ScriptController.GetComponent<Stats>().CameraManSpawned(); // causing a Null Reference exception
+
+                ScriptController.GetComponent<Stats>().CameraManSpawned();
             }
             _canLevelUp = true;
         }
@@ -55,20 +57,6 @@ public class EnemySpawn : MonoBehaviour
         if(ScriptController.GetComponent<Stats>().SpawnCount % 10 == 0 && _canLevelUp)
         {
             IncreaseLevel();
-
-            //if(ScriptController.GetComponent<Stats>().SpawnCount > 0)
-            //{
-            //    Debug.Log("level " + levelIndex);
-            //    CancelInvoke();
-
-            //    _frequency *= .8F;
-            //    levelIndex++;
-            //    InvokeRepeating("Spawn", 2, _frequency);
-            //}
-            //if (levelIndex > 1)
-            //{
-
-            //}
         }
 	}
 
@@ -88,8 +76,7 @@ public class EnemySpawn : MonoBehaviour
             CameraMan.GetComponent<CameraManMove>().LevelUp();
         }
         _canLevelUp = false;
-        ScoreController.GetComponent<ScoreController>().UpdateYear(LevelIndex);
 
-        Debug.Log("Level " + LevelIndex);
+        ScoreController.GetComponent<ScoreController>().UpdateYear(LevelIndex);
     }
 }

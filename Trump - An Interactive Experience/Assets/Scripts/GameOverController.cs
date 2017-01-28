@@ -12,7 +12,6 @@ public class GameOverController : MonoBehaviour
     void Start () 
     {
         ScoreController = GameObject.Find("ScoreController");
-
         _hasLoaded = false;
 	}
 	
