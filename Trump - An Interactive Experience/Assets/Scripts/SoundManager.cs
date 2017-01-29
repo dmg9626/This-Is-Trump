@@ -27,6 +27,11 @@ public class SoundManager : MonoBehaviour
                     GameMusic();
                     break;
                 }
+            case "Instructions":
+                {
+                    GameMusic();
+                    break;
+                }
         }
 
 	}
