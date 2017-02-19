@@ -22,7 +22,6 @@ public class EnemySpawn : MonoBehaviour
         CameraMan = Resources.Load("CameraMan") as GameObject;
 
         InvokeRepeating("Spawn", .5F, _frequency);
-        Debug.Log("Level " + LevelIndex);
     }
 
 	void Spawn()

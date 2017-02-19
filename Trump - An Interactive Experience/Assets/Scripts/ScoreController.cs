@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour 
 {
     public int Score;
     public GameObject ScoreText;
     public GameObject YearText;
-    GameObject PromptText;
+    public GameObject TweetText;
+    public GameObject WallText;
+    public GameObject PromptText;
 
+    private float _time;
     private int _badHombreKills;
     private int _cameraManKills;
     private int _level;
@@ -19,8 +23,12 @@ public class ScoreController : MonoBehaviour
 	void Start () 
     {
         Score = 0;
+        _time = 0;
         ScoreText = GameObject.Find("Score");
         YearText = GameObject.Find("YearsInOffice");
+
+        TweetText = GameObject.Find("TweetText");
+        WallText = GameObject.Find("WallText");
 
         ScoreText.GetComponent<TextMesh>().text = "Score: \n " + Score;
 	}
@@ -28,7 +36,16 @@ public class ScoreController : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-		
+        if(SceneManager.GetActiveScene().name == "Game")
+        {
+            if(WallText.activeSelf && TweetText.activeSelf)
+            {
+                if(_time > 10 && WallText.activeSelf)
+                    ToggleInstructionText();
+                else 
+                    _time += Time.deltaTime;
+            }
+        }
 	}
 
     public void IncreaseScore(int scoreIncrease)
@@ -102,7 +119,7 @@ public class ScoreController : MonoBehaviour
         gameOverStats.GetComponent<TextMesh>().text += string.Format("You were president for {0} year{1}", _level, FormatStatEnding(_level));
 
         PromptText = GameObject.Find("PromptText");
-        InvokeRepeating("ToggleText", 1, .5F);
+        InvokeRepeating("TogglePromptText", 1, .5F);
     }
 
     private string FormatStatEnding(int number)
@@ -110,8 +127,14 @@ public class ScoreController : MonoBehaviour
         return number != 1 ?  "s\n" : "\n";
     }
 
-    public void ToggleText()
+    public void TogglePromptText()
     {
         PromptText.SetActive(!PromptText.activeSelf);
+    }
+
+    public void ToggleInstructionText()
+    {
+        TweetText.SetActive(!TweetText.activeSelf);
+        WallText.SetActive(!WallText.activeSelf);
     }
 }
