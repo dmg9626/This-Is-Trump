@@ -2,6 +2,31 @@
 
 You play as the man in charge President Donald Trump. You are "running for president" but the Bad Hombres and Biased Liberal Media are trying to take you down! Build those walls and tweet like you've never tweeted before in this adrenaline-pumping side scrolling action game!
 
+---
+
+## Screenshots
+
+![Main Menu](Screenshots/MainMenu.png?raw=true "Main Menu")
+
+Raise a Wall to keep out the Bad Hombres!
+
+![Raise A Wall](Screenshots/RaiseAWall.png?raw=true "Raise A Wall")
+
+
+Throw Tweets to discredit the Biased Liberal Media!
+
+![Throw Tweets](Screenshots/ThrowTweets.png?raw=true "Throw Tweets")
+
+---
+
+## Installation
+
+1. Clone the repository/download as a .zip file (click the green button to expand these options)
+2. Navigate to the folder that matches your operating system (Windows/macOS/Linux)
+3. Launch the application inside
+
+---
+
 ## Controls:
 
 A/D - Move left/right
@@ -10,15 +35,13 @@ W - Build a wall
 
 Space - Tweet
 
-## Installation
-
-1. Clone the repository/download as a .zip file (click the green button to expand these options)
-2. Navigate to the folder that matches your operating system (Windows/macOS/Linux)
-3. Launch the application inside
+---
 
 ## Motivation
 
 Unity is a very active platform for indie developers, and I wanted to get comfortable working with it by making a simple, fun 2D game. Over the course of development I familiarized myself with the fundamentals of GameObjects/Components and practiced programming game logic, working my way up from simple collision detection, to scripts that play animations when the user presses a button, to data being preserved across scenes. While my code ended up being a little sloppy, it was my first time scripting in Unity and now that I'm comfortable working in that environment, the next game I make will be much better.
+
+---
 
 ## Credits
 
