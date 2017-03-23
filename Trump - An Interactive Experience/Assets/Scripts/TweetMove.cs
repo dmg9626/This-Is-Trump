@@ -5,12 +5,10 @@ using UnityEngine;
 public class TweetMove : MonoBehaviour 
 {
     private float tweetSpeed;
-    GameObject ScriptController;
 	// Use this for initialization
 	void Start () 
     {
         tweetSpeed = .25F;
-        ScriptController = GameObject.Find("ScriptController");
 	}
 	
 	// Update is called once per frame
@@ -29,14 +27,13 @@ public class TweetMove : MonoBehaviour
         {
             if (col.gameObject.name == "Camera Man")
             {
-                GameObject.Destroy(col.gameObject);
-                GameObject.Destroy(gameObject);
-                ScriptController.GetComponent<Stats>().CameraManKilled();
+                col.gameObject.GetComponent<CameraManMove>().SubtractHealth(2);
             }
-            else
+            else if(col.gameObject.name == "Bad Hombre")
             {
-                GameObject.Destroy(gameObject);
+                col.gameObject.GetComponent<BadHombreMove>().SubtractHealth(1);
             }
+            GameObject.Destroy(gameObject);
         }
     }
 }

@@ -24,11 +24,11 @@ public class WallDestroy : MonoBehaviour
         {
             if (col.gameObject.name == "Bad Hombre")
             {
-                GameObject.Destroy(col.gameObject);
-                ScriptController.GetComponent<Stats>().BadHombreKilled();
+                col.gameObject.GetComponent<BadHombreMove>().SubtractHealth(2);
             }
-            else
+            else if(col.gameObject.name == "CameraMan")
             {
+                col.gameObject.GetComponent<CameraManMove>().SubtractHealth(2);
                 ScriptController.GetComponent<WallAnim>()._finishedAnimating = true;
             }
         }

@@ -12,6 +12,8 @@ public class SoundManager : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Game":
+            case "Instructions":
+            case "MainMenu":
                 {
                     // calls musicGame() script to play the game music if it isn't playing already
                     GameMusic();
@@ -20,16 +22,6 @@ public class SoundManager : MonoBehaviour
             case "GameOver":
                 {
                     GameOverMusic();
-                    break;
-                }
-            case "MainMenu":
-                {
-                    GameMusic();
-                    break;
-                }
-            case "Instructions":
-                {
-                    GameMusic();
                     break;
                 }
         }
@@ -42,7 +34,7 @@ public class SoundManager : MonoBehaviour
         if (!GameObject.Find("Music_GameMusic"))
         {
             // creates instance of Sound_GameMusic object that plays music on loop as soon as it appears in the scene
-            _gameMusic = Instantiate(Resources.Load("GameMusic")) as GameObject;
+            _gameMusic = Instantiate(Resources.Load("MusicPrefabs/GameMusic")) as GameObject;
             _gameMusic.name = "Music_GameMusic";
             DontDestroyOnLoad(_gameMusic);
         }
@@ -56,7 +48,7 @@ public class SoundManager : MonoBehaviour
     {
         if (!GameObject.Find("Music_GameOverMusic"))
         {
-            _gameMusic = Instantiate(Resources.Load("GameOverMusic")) as GameObject;
+            _gameMusic = Instantiate(Resources.Load("MusicPrefabs/GameOverMusic")) as GameObject;
             _gameMusic.name = "Music_GameOverMusic";
             DontDestroyOnLoad(_gameMusic);
         }
@@ -66,21 +58,25 @@ public class SoundManager : MonoBehaviour
     {
         if (_soundEffectIndex < 5)
         {
-            int rand = Random.Range(0, 3) + 1;
+            int rand = Random.Range(0, 4) + 1;
             GameObject sound = null;
             switch (rand)
             {
                 case 1:
-                    sound = Instantiate(Resources.Load("SoundEffect_Wrong")) as GameObject;
+                    sound = Instantiate(Resources.Load("SoundEffectPrefabs/SoundEffect_Wrong")) as GameObject;
                     sound.name = "SoundEffect_Wrong";
                     break;
                 case 2:
-                    sound = Instantiate(Resources.Load("SoundEffect_BadHombres")) as GameObject;
+                    sound = Instantiate(Resources.Load("SoundEffectPrefabs/SoundEffect_BadHombres")) as GameObject;
                     sound.name = "SoundEffect_BadHombres";
                     break;
                 case 3:
-                    sound = Instantiate(Resources.Load("SoundEffect_China")) as GameObject;
+                    sound = Instantiate(Resources.Load("SoundEffectPrefabs/SoundEffect_China")) as GameObject;
                     sound.name = "SoundEffect_China";
+                    break;
+                case 4:
+                    sound = Instantiate(Resources.Load("SoundEffectPrefabs/SoundEffect_BuildAWall")) as GameObject;
+                    sound.name = "SoundEffect_BuildAWall";
                     break;
             }
             _soundEffectIndex++;
