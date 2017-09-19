@@ -26,9 +26,9 @@ public class WallDestroy : MonoBehaviour
             {
                 col.gameObject.GetComponent<BadHombreMove>().SubtractHealth(2);
             }
-            else if(col.gameObject.name == "CameraMan")
+            else if(col.gameObject.name == "Camera Man")
             {
-                col.gameObject.GetComponent<CameraManMove>().SubtractHealth(2);
+                //col.gameObject.GetComponent<CameraManMove>().SubtractHealth(2);
                 ScriptController.GetComponent<WallAnim>()._finishedAnimating = true;
             }
         }

@@ -10,10 +10,15 @@ ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
+*/Library/
 *.sln
 *.suo
+*.bin
+*.info
+*.resource
 *.tmp
 *.user
+*.dwlt
 *.userprefs
 *.pidb
 *.booproj

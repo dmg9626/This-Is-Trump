@@ -8,15 +8,15 @@ public class MainMenuController : MonoBehaviour
     GameObject StartText;
     GameObject TitleText;
     GameObject ControlsText;
-    GameObject ControlsHeaderText;
+    //GameObject ControlsHeaderText;
 	void Start ()
     {
         StartText = GameObject.Find("StartText");
         TitleText = GameObject.Find("TitleText");
-        ControlsHeaderText = GameObject.Find("ControlsHeaderText");
+        //ControlsHeaderText = GameObject.Find("ControlsHeaderText");
         ControlsText = GameObject.Find("ControlsText");
 
-        ControlsHeaderText.SetActive(false);
+        //ControlsHeaderText.SetActive(false);
         ControlsText.SetActive(false);
 
         InvokeRepeating("ToggleStartText", 1, .5F);
@@ -48,7 +48,7 @@ public class MainMenuController : MonoBehaviour
     void ToggleInstructionsText()
     {
         TitleText.SetActive(!TitleText.activeSelf);
-        ControlsHeaderText.SetActive(!ControlsHeaderText.activeSelf);
+        //ControlsHeaderText.SetActive(!ControlsHeaderText.activeSelf);
         ControlsText.SetActive(!ControlsText.activeSelf);
     }
 }

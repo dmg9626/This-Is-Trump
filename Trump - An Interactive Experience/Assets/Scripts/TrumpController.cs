@@ -11,8 +11,8 @@ public class TrumpController : MonoBehaviour
     public GameObject ScriptController;
     public GameObject SoundController;
 
-    private float _screenBoundaryLeft = -5.8F;
-    private float _screenBoundaryRight = 10.25F;
+    public float screenBoundaryLeft;
+    public float screenBoundaryRight = 10.25F;
     //private float _killBoundaryLeft = -8.5F;
 
     // Use this for initialization
@@ -36,6 +36,8 @@ public class TrumpController : MonoBehaviour
             PlayerSpeed = 5;
             CanAct = true;
         }
+
+        screenBoundaryLeft = -5.8F;
         CanMove = true;
         DontDestroyOnLoad(ScriptController);
     }
@@ -55,12 +57,12 @@ public class TrumpController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                if (Donald.transform.position.x > _screenBoundaryLeft)
+                if (Donald.transform.position.x > screenBoundaryLeft)
                     Donald.transform.position = new Vector2(Donald.transform.position.x - PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                if (Donald.transform.position.x < _screenBoundaryRight)
+                if (Donald.transform.position.x < screenBoundaryRight)
                     Donald.transform.position = new Vector2(Donald.transform.position.x + PlayerSpeed * Time.deltaTime, Donald.transform.position.y);
             }
             if (CanAct)

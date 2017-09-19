@@ -29,10 +29,6 @@ public class TweetMove : MonoBehaviour
             {
                 col.gameObject.GetComponent<CameraManMove>().SubtractHealth(2);
             }
-            else if(col.gameObject.name == "Bad Hombre")
-            {
-                col.gameObject.GetComponent<BadHombreMove>().SubtractHealth(1);
-            }
             GameObject.Destroy(gameObject);
         }
     }
