@@ -10,7 +10,7 @@ ExportedObj/
 .consulo/
 *.csproj
 *.unityproj
-*/Library/
+*/Library*
 *.sln
 *.suo
 *.bin
