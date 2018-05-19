@@ -8,7 +8,7 @@ public class TrumpController : MonoBehaviour
     public bool CanAct;
     public float PlayerSpeed;
     public GameObject Donald;
-    public GameObject ScriptController;
+    // public GameObject ScriptController;
     public GameObject SoundController;
 
     public float screenBoundaryLeft;
@@ -18,8 +18,9 @@ public class TrumpController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ScriptController = GameObject.Find("ScriptController");
-        DontDestroyOnLoad(ScriptController);
+        // ScriptController = GameObject.Find("ScriptController");
+        // DontDestroyOnLoad(ScriptController);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -54,14 +55,14 @@ public class TrumpController : MonoBehaviour
                         GameObject tweet = GameObject.Instantiate(Resources.Load("Tweet")) as GameObject;
                         tweet.transform.position = new Vector2(Donald.transform.position.x + 1, Donald.transform.position.y);
                         tweet.name = "Tweet";
-                        ScriptController.GetComponent<TweetAnim>()._beginAnimating = true; // trigger animation
-                        ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
+                        GetComponent<TweetAnim>()._beginAnimating = true; // trigger animation
+                        GetComponent<SoundManager>().DonaldSoundEffect();
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
                 {
-                    ScriptController.GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
-                    ScriptController.GetComponent<SoundManager>().DonaldSoundEffect();
+                    GetComponent<WallAnim>()._beginAnimating = true; // trigger animation
+                    GetComponent<SoundManager>().DonaldSoundEffect();
                 }
             }
         }
