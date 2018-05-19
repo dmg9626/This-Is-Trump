@@ -9,6 +9,9 @@ public class ScoreController : MonoBehaviour
     public int Score;
     public GameObject ScoreText;
     public GameObject YearText;
+
+    public Text ScoreTextUI;
+    public Text YearTextUI;
     public GameObject TweetText;
     public GameObject WallText;
     public GameObject PromptText;
@@ -30,7 +33,7 @@ public class ScoreController : MonoBehaviour
         TweetText = GameObject.Find("TweetText");
         WallText = GameObject.Find("WallText");
 
-        ScoreText.GetComponent<TextMesh>().text = "Score: \n " + Score;
+        // ScoreText.GetComponent<TextMesh>().text = "Score: \n " + Score;
 	}
 	
 	// Update is called once per frame
@@ -51,12 +54,14 @@ public class ScoreController : MonoBehaviour
     public void IncreaseScore(int scoreIncrease)
     {
         Score += scoreIncrease;
-        ScoreText.GetComponent<TextMesh>().text = "Score: \n" + Score;
+        // ScoreText.GetComponent<TextMesh>().text = "Score: \n" + Score;
+        ScoreTextUI.text = "Score: \n" + Score;
     }
 
     public void UpdateYear(int year)
     {
-        YearText.GetComponent<TextMesh>().text = "Years in Office: \n" + year;
+        // YearText.GetComponent<TextMesh>().text = "Years in Office: \n" + year;
+        YearTextUI.text = "Years in Office: \n" + year;
     }
 
     public void SetGameOverStats(GameObject enemy, int badHombreKills, int cameraManKills, int level)
