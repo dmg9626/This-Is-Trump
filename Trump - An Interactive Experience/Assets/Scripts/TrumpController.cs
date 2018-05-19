@@ -12,7 +12,7 @@ public class TrumpController : MonoBehaviour
     public GameObject SoundController;
 
     public float screenBoundaryLeft;
-    public float screenBoundaryRight = 10.25F;
+    public float screenBoundaryRight;
     //private float _killBoundaryLeft = -8.5F;
 
     // Use this for initialization
@@ -26,19 +26,7 @@ public class TrumpController : MonoBehaviour
 
             ScriptController = GameObject.Find("ScriptController");
         }
-        if (SceneManager.GetActiveScene().name == "GrabThePussy")
-        {
-            PlayerSpeed = 4;
-            CanAct = false;
-        }
-        else
-        {
-            PlayerSpeed = 5;
-            CanAct = true;
-        }
-
-        screenBoundaryLeft = -5.8F;
-        CanMove = true;
+        
         DontDestroyOnLoad(ScriptController);
     }
 
