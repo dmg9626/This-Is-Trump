@@ -18,15 +18,7 @@ public class TrumpController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (!GameObject.Find("Donald"))
-        {
-            Donald = Instantiate(Resources.Load("Donald")) as GameObject;
-            Donald.name = "Donald";
-            Donald.GetComponent<Damage>().Lives = 5;
-
-            ScriptController = GameObject.Find("ScriptController");
-        }
-        
+        ScriptController = GameObject.Find("ScriptController");
         DontDestroyOnLoad(ScriptController);
     }
 
