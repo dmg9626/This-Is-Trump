@@ -5,20 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    GameObject StartText;
-    GameObject TitleText;
-    GameObject ControlsText;
+    public GameObject StartText;
+    public GameObject TitleText;
+    public GameObject ControlsText;
     //GameObject ControlsHeaderText;
 	void Start ()
     {
-        StartText = GameObject.Find("StartText");
-        TitleText = GameObject.Find("TitleText");
-        //ControlsHeaderText = GameObject.Find("ControlsHeaderText");
-        ControlsText = GameObject.Find("ControlsText");
-
-        //ControlsHeaderText.SetActive(false);
-        ControlsText.SetActive(false);
-
         InvokeRepeating("ToggleStartText", 1, .5F);
     }
 	
