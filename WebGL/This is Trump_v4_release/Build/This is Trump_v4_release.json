@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "This is Trump_v4_release.data.unityweb",
+"asmCodeUrl": "This is Trump_v4_release.asm.code.unityweb",
+"asmMemoryUrl": "This is Trump_v4_release.asm.memory.unityweb",
+"asmFrameworkUrl": "This is Trump_v4_release.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
