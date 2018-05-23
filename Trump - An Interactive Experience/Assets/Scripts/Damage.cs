@@ -21,8 +21,6 @@ public class Damage : MonoBehaviour
     GameObject ScoreController;
     public GameObject Enemy;
     float screenBoundaryLeft;
-    //private float _damageBuffer;
-    //private float _time;
 
     void Start () 
     {
@@ -33,11 +31,6 @@ public class Damage : MonoBehaviour
         //_damageBuffer = 1;
         //_time = 0;
     }
-	
-	void Update () 
-    {
-		
-	}
 
     public void OnCollisionStay2D(Collision2D col)
     {
@@ -59,13 +52,6 @@ public class Damage : MonoBehaviour
             }
         }
     }
-
-    /*
-    public void OnCollisionExit(Collision col)
-    {
-        _time = 0;
-    }
-    */
 
     public void LoadGameOver()
     {

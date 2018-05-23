@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -14,6 +15,9 @@ public class Stats : MonoBehaviour
     private int _cameraManKillCount;
 
     public IList<GameObject> Hearts;
+    public List<Image> UIHearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
     public GameObject ScriptController;
     public GameObject ScoreController;
     public float time;
@@ -53,15 +57,6 @@ public class Stats : MonoBehaviour
         ScriptController = GameObject.Find("ScriptController");
         ScoreController = GameObject.Find("ScoreController");
         DontDestroyOnLoad(ScoreController);
-
-        Vector2 heartPosition = new Vector2(-6, 8);
-        for (int i = 0; i < 5; i++)
-        {
-            Hearts[i] = Instantiate(Resources.Load("FullHeart")) as GameObject;
-            Hearts[i].name = "FullHeart" + (i + 1);
-            Hearts[i].transform.position = heartPosition;
-            heartPosition.x += 1.5F;
-        }
     }
 
 
@@ -72,13 +67,9 @@ public class Stats : MonoBehaviour
 
     public void RemoveHeart(int Lives)
     {
-        GameObject heart = Hearts[Lives];
-        Vector2 heartPosition = new Vector2(heart.transform.position.x, heart.transform.position.y);
-
-        GameObject.Destroy(heart);
-        heart = GameObject.Instantiate(Resources.Load("EmptyHeart")) as GameObject;
-        heart.name = "EmptyHeart" + Lives;
-        heart.transform.position = heartPosition;
+        // Get reference to heart corresponding to player's reduced health
+        Image heart = UIHearts[Lives];
+        heart.sprite = emptyHeart;
     }
 
     public void BadHombreKilled()
